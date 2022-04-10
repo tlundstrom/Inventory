@@ -7,9 +7,9 @@ const ItemSchema = new Schema({
         minlength: [2, "The item's name must be at least 2 characters."],
         required: [true, "Item name is required."]
     },
-    category: {
+    location: {
         type: String,
-        required: [true, "Item category is required."]
+        required: [true, "Item location is required."]
     },
     unit: {
         type: String,
@@ -26,6 +26,9 @@ const ItemSchema = new Schema({
     par: {
         type: Number,
         required: [true, "Item par level is required."]
+    },
+    amount: {
+        type: Number,
     }
 }, {timestamps:true});
 
