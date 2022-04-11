@@ -1,11 +1,15 @@
+require('dotenv').config();
 const express = require('express');
 const cors =require('cors');
+const cookieParser = require('cookie-parser');
 const app = express();
-const port = 8000;
+const port = process.env.MY_PORT;
 
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
+
+app.use(cookieParser());
 
 app.use(express.json());
 
@@ -17,4 +21,4 @@ require('./routes/items.routes')(app);
 
 
 
-app.listen(port, () => console.log(`Listening on port: ${port}`) );
+app.listen(port, () => console.log(`Listening on port: ${process.env.MY_PORT}`) );
