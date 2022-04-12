@@ -8,8 +8,8 @@ const ItemSchema = new Schema({
         required: [true, "Item name is required."]
     },
     location: {
-        type: String,
-        required: [true, "Item location is required."]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Locations"
     },
     unit: {
         type: String,
@@ -20,8 +20,8 @@ const ItemSchema = new Schema({
         required: [true, "Item cost is required."]
     },
     distributor: {
-        type: String,
-        required: [true, "Item distributor is required."]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Distributor"
     },
     par: {
         type: Number,

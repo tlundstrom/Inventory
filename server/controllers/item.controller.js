@@ -1,8 +1,10 @@
 const Item = require('../models/item.model');
 const jwt = require('jsonwebtoken');
 
-module.exports = {
 
+
+module.exports = {
+    
     createItem : (req, res) => {
         const newItemObject = new Item(req.body);
         const decodedJWT = jwt.decode(req.cookies.usertoken, {
@@ -19,7 +21,10 @@ module.exports = {
         },
 
     getAllItems : (req, res)=>{
-        Item.find()
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {
+            complete: true
+        })
+        Item.find({createdBy: decodedJWT.payload.id})
         .populate("createdBy", "name email")
             .then((items)=>{
                 res.json(items)

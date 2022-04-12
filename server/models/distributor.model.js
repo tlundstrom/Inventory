@@ -21,20 +21,11 @@ const DistributorSchema = new Schema({
         lowercase: true,
     },
     orderDays: {
-        type: String,
-        enum:[
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-        ]
+        type: Array,
     },
     orderCutoff: {
         type: String
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model("Location", LocationSchema);
+module.exports = mongoose.model("Distributor", DistributorSchema);

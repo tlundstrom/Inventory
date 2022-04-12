@@ -18,6 +18,8 @@ app.use(express.urlencoded({extended:true}));
 require('./config/mongoose.config');
 require('./routes/items.routes')(app);
 require('./routes/users.routes')(app);
+require('./routes/distributors.routes')(app);
+require('./routes/locations.routes')(app);
 
 
 

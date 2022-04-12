@@ -32,4 +32,4 @@ const LocationSchema = new Schema({
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model("Location", LocationSchema);T
+module.exports = mongoose.model("Location", LocationSchema);
