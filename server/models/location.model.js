@@ -26,7 +26,10 @@ const LocationSchema = new Schema({
             "Yearly"
         ],
         required:[true, "Inventory frequency is required"]
+    },
+    reminders: {
+        type: Boolean
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model("Location", LocationSchema);
+module.exports = mongoose.model("Location", LocationSchema);T
