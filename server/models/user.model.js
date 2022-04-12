@@ -10,10 +10,8 @@ const UserSchema = new Schema({
         type: String,
         trim: true,
         lowercase: true,
-        unique: true,
         required: 'Email address is required',
-        validate: [validateEmail, 'Please fill a valid email address'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+
     },
     password: {
         type: String,
@@ -27,3 +25,25 @@ const UserSchema = new Schema({
 UserSchema.virtual("confirmPassword")
     .get(()=>this._confirmPassword)
     .set((value)=>this._confirmPassword = value)
+
+
+UserSchema.pre("validate", function(next){
+    if(this.password!== this.confirmPassword){
+        this.invalidate("confirmPassword", "Passwords must match.");
+        console.log("Passwords don't match!");
+    }
+    next();
+})
+
+UserSchema.pre("save", function(next){
+    console.log("in presave");
+    bcrypt.hash(this.password, 10)
+        .then((hashedPassword)=>{
+            this.password = hashedPassword;
+            next();
+        })
+})
+
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User;

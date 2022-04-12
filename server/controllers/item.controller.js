@@ -1,19 +1,26 @@
 const Item = require('../models/item.model');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
 
     createItem : (req, res) => {
-        Item.create(req.body)
+        const newItemObject = new Item(req.body);
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {
+            complete:true
+        })
+        newItemObject.createdBy = decodedJWT.payload.id;
+        newItemObject.save()
             .then(item => {
                 return res.json(item)
             })
             .catch(err => {
                 return res.status(400).json(err);
-            });
-    },
+            })
+        },
 
     getAllItems : (req, res)=>{
         Item.find()
+        .populate("createdBy", "name email")
             .then((items)=>{
                 res.json(items)
             })
