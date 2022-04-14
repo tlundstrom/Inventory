@@ -80,11 +80,8 @@ module.exports = {
 
 
     getLoggedInUser: (req, res)=>{
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {
-            complete: true
-        })
 
-        User.findOne({_id: decodedJWT.payload.id})
+        User.findOne({_id: req.jwtpayload.id})
             .then((user)=>{
                 console.log(user);
                 res.json(user);
