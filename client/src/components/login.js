@@ -9,8 +9,7 @@ const Login = (props) => {
     const submitHandler = (e) =>{
         e.preventDefault();
 
-        axios
-            .post("http://localhost:8000/api/users/login", 
+        axios.post("http://localhost:8000/api/users/login", 
             {
                 email: email,
                 password: password

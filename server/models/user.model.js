@@ -22,14 +22,14 @@ const UserSchema = new Schema({
 }, {timestamps:true})
 
 
-UserSchema.virtual("confirmPassword")
-    .get(()=>this._confirmPassword)
-    .set((value)=>this._confirmPassword = value)
+UserSchema.virtual("confirm")
+    .get(()=>this._confirm)
+    .set((value)=>this._confirm = value)
 
 
 UserSchema.pre("validate", function(next){
-    if(this.password!== this.confirmPassword){
-        this.invalidate("confirmPassword", "Passwords must match.");
+    if(this.password!== this.confirm){
+        this.invalidate("confirm", "Passwords must match.");
         console.log("Passwords don't match!");
     }
     next();
