@@ -1,13 +1,10 @@
 const Location = require('../models/location.model');
-const jwt = require('jsonwebtoken');
 
 module.exports = {
     createLocation : (req, res) => {
         const newLocationObject = new Location(req.body);
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {
-            complete:true
-        })
-        newLocationObject.createdBy = decodedJWT.payload.id;
+
+        newLocationObject.createdBy = req.jwtpayload.id;
         newLocationObject.save()
             .then(location => {
                 return res.json(location)
@@ -18,11 +15,8 @@ module.exports = {
         },
 
     getAllLocations : (req, res)=>{
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {
-            complete: true
-        })
-        Location.find({createdBy: decodedJWT.payload.id})
-        .populate("createdBy", "name email")
+        Location.find({createdBy: req.jwtpayload.id})
+        .populate("createdBy", "name")
             .then((locations)=>{
                 res.json(locations)
             })
@@ -32,7 +26,7 @@ module.exports = {
     },
 
     getOneLocation : (req, res) => {
-        Location.findById(req.params.id)
+        Location.findOne({createdBy: req.jwtpayload.id}&&{_id:req.params.id})
             .then(location => {
                 return res.json(location)
             })
@@ -43,8 +37,8 @@ module.exports = {
 
     updateOneLocation : (req, res) => {
         console.log(req.body)
-        Location.findByIdAndUpdate(
-            req.params.id ,
+        Location.findOneAndUpdate(
+            {createdBy: req.jwtpayload.id}&&{_id:req.params.id} ,
             req.body,
             { new: true, runValidators: true }
         )
@@ -58,7 +52,7 @@ module.exports = {
 
     deleteOneLocation: (req, res) => {
         console.log(req.params.id);
-        Location.deleteOne({_id: req.params.id})
+        Location.deleteOne({createdBy: req.jwtpayload.id}&&{_id:req.params.id})
             .then(deleted => {
                 return res.json(deleted);
             })

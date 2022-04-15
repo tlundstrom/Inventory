@@ -1,5 +1,4 @@
 const Item = require('../models/item.model');
-const jwt = require('jsonwebtoken');
 
 
 
@@ -7,10 +6,7 @@ module.exports = {
     
     createItem : (req, res) => {
         const newItemObject = new Item(req.body);
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {
-            complete:true
-        })
-        newItemObject.createdBy = decodedJWT.payload.id;
+        newItemObject.createdBy = req.jwtpayload.id;
         newItemObject.save()
             .then(item => {
                 return res.json(item)
@@ -21,11 +17,8 @@ module.exports = {
         },
 
     getAllItems : (req, res)=>{
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {
-            complete: true
-        })
-        Item.find({createdBy: decodedJWT.payload.id})
-        .populate("createdBy", "name email")
+        Item.find({createdBy: req.jwtpayload.id})
+        .populate("createdBy", "name")
             .then((items)=>{
                 res.json(items)
             })
@@ -35,7 +28,8 @@ module.exports = {
     },
 
     getOneItem : (req, res) => {
-        Item.findById(req.params.id)
+        Item.findOne({createdBy: req.jwtpayload.id}&&{_id:req.params.id})
+        .populate("createdBy", "name")
             .then(item => {
                 return res.json(item)
             })
@@ -46,11 +40,12 @@ module.exports = {
 
     updateOneItem : (req, res) => {
         console.log(req.body)
-        Item.findByIdAndUpdate(
-            req.params.id ,
+        Item.findOneAndUpdate(
+            r{createdBy: req.jwtpayload.id}&&{_id:req.params.id} ,
             req.body,
             { new: true, runValidators: true }
         )
+        .populate("createdBy", "name")
             .then(updatedItem => {
                 return res.json(updatedItem)
             })
@@ -61,7 +56,7 @@ module.exports = {
 
     deleteOneItem: (req, res) => {
         console.log(req.params.id);
-        Item.deleteOne({_id: req.params.id})
+        Item.deleteOne({createdBy: req.jwtpayload.id}&&{_id:req.params.id})
             .then(deleted => {
                 return res.json(deleted);
             })

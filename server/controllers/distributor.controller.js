@@ -1,13 +1,9 @@
 const Distributor = require('../models/distributor.model')
-const jwt = require('jsonwebtoken');
 
 module.exports = {
     createDistributor : (req, res) => {
         const newDistributorObject = new Distributor(req.body);
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {
-            complete:true
-        })
-        newDistributorObject.createdBy = decodedJWT.payload.id;
+        newDistributorObject.createdBy = req.jwtpayload.id;
         newDistributorObject.save()
             .then(distributor => {
                 return res.json(distributor)
@@ -18,8 +14,9 @@ module.exports = {
         },
 
     getAllDistributors : (req, res)=>{
-        Distributor.find()
-        .populate("createdBy", "name email")
+
+        Distributor.find({createdBy: req.jwtpayload.id})
+        .populate("createdBy", "name")
             .then((distributors)=>{
                 res.json(distributors)
             })
@@ -29,7 +26,8 @@ module.exports = {
     },
 
     getOneDistributor : (req, res) => {
-        Distributor.findById(req.params.id)
+        Distributor.findOne({_id:req.params.id}&&{createdBy: req.jwtpayload.id})
+        .populate("createdBy", "name")
             .then(distributor => {
                 return res.json(distributor)
             })
@@ -40,11 +38,12 @@ module.exports = {
 
     updateOneDistributor : (req, res) => {
         console.log(req.body)
-        Distributor.findByIdAndUpdate(
-            req.params.id ,
+        Distributor.findOneAndUpdate(
+            {_id: req.params.id}&&{createdBy: req.jwtpayload.id},
             req.body,
             { new: true, runValidators: true }
         )
+        .populate("createdBy", "name")
             .then(updatedDistributor => {
                 return res.json(updatedDistributor)
             })
@@ -55,7 +54,7 @@ module.exports = {
 
     deleteOneDistributor: (req, res) => {
         console.log(req.params.id);
-        Distributor.deleteOne({_id: req.params.id})
+        Distributor.deleteOne({_id: req.params.id}&&{createdBy: req.jwtpayload.id})
             .then(deleted => {
                 return res.json(deleted);
             })
