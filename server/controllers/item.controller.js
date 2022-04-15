@@ -41,7 +41,7 @@ module.exports = {
     updateOneItem : (req, res) => {
         console.log(req.body)
         Item.findOneAndUpdate(
-            r{createdBy: req.jwtpayload.id}&&{_id:req.params.id} ,
+            {createdBy: req.jwtpayload.id}&&{_id:req.params.id} ,
             req.body,
             { new: true, runValidators: true }
         )
