@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Register = (props) =>{
+    const {toggleForm} = props;
     const [user, setUser] =useState({
         name: "",
         email: "",
@@ -19,19 +21,18 @@ const Register = (props) =>{
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        // setUser({
-        //     name: "",
-        //     email: "",
-        //     password: "",
-        //     confirm: ""
-        // })
-
         axios.post('http://localhost:8000/api/users/register', 
         user,
         {
             withCredentials: true
         })
             .then((res)=>{
+                setUser({
+                    name: "",
+                    email: "",
+                    password: "",
+                    confirm: ""
+                })
                 console.log(res);
                 console.log("registered");
             })
@@ -54,6 +55,7 @@ const Register = (props) =>{
                 <input type="text" value={user.confirm} name="confirm" onChange={(e)=>{handleChange(e)}}/>
                 <input type="submit" value="Register"/>
             </form>
+            <Link onClick={toggleForm} to="#">Already Have an Account?</Link>
         </>
     )
 }

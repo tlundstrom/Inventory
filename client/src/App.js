@@ -1,14 +1,16 @@
-
 import './App.css';
-import Login from './components/login';
-import Register from './components/register';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import LogReg from './views/LogReg';
 
 function App() {
   return (
-    <div className="App">
-      <Login/>
-      <Register/>
-    </div>
+    <BrowserRouter>
+      <section className="App">
+        <Routes>
+          <Route element={<LogReg />} path="/" />
+        </Routes>
+      </section>
+    </BrowserRouter>
   );
 }
 

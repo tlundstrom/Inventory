@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 const Login = (props) => {
-
+    const {toggleForm} = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,6 +25,7 @@ const Login = (props) => {
             .catch(err => console.error(err));
 
     }
+
     
     return (
         <>
@@ -34,6 +36,7 @@ const Login = (props) => {
                 <input value={password} type="password" onChange={(e)=> setPassword(e.target.value)}/>
                 <input type="submit" value="Login" />
             </form>
+            <Link onClick={toggleForm} to="#">Need an Account?</Link>
         </>
     )
 }
