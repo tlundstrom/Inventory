@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const DistributorSchema = new Schema({
-    name: {
+    distName: {
         type: String,
         required:[true, "Distributor name is required."],
         minlength:[2, "Distributor name must be at least 2 characters long."]
     },
-    rep: {
+    repName: {
         type: String,
         required: [true, "Sales rep is required"]
     },
@@ -15,7 +15,7 @@ const DistributorSchema = new Schema({
         type: String,
         required:[true, "Phone number is required"]
     },
-    email: {
+    repEmail: {
         type: String,
         trim: true,
         lowercase: true,
