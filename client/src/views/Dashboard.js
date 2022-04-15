@@ -93,7 +93,6 @@ const Dashboard = (props) =>{
             .catch((err)=>{console.log(err)});
     }
 
-    if(!loggedin){return navigate("/")}
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{display:'flex'}}>

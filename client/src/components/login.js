@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Link as RouterLink, useNavigate} from 'react-router-dom'
 import {useState} from 'react';
 import axios from 'axios';
+import { Grid } from '@mui/material';
 
 const theme = createTheme();
 
@@ -88,8 +89,13 @@ const Login = (props) => {
                         </Button>
                     </Box>
                 </Box>
+                <Grid container justifyContent={"flex-end"}>
+                    <Grid item>
+                        <Link component={RouterLink} variant="body2" onClick={toggleForm} to="#">Need an Account?</Link>
+                    </Grid>
+                </Grid>
             </Container>
-            <Link component={RouterLink} onClick={toggleForm} to="#">Need an Account?</Link>
+            
         </ThemeProvider>
     )
 }

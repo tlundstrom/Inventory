@@ -1,4 +1,3 @@
-// import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LogReg from './views/LogReg';
 import Dashboard from './views/Dashboard';
