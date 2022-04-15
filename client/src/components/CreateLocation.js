@@ -39,7 +39,7 @@ const CreateLocation = (props) =>{
                     alignItems: 'center',
                 }}
             >
-                <Typography component="h1" variant="h5">Enter a new Distributor</Typography>
+                <Typography component="h1" variant="h5">Enter a new Location</Typography>
 
             </Box>
         </Container>
