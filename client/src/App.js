@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LogReg from './views/LogReg';
 import Dashboard from './views/Dashboard';
 import { useState } from 'react';
+import ProtectedRoute from './components/ProtectedRoutes';
 
 function App() {
   const [loggedin, setLoggedin] = useState(false);
@@ -11,7 +12,11 @@ function App() {
       <section className="App">
         <Routes>
           <Route element={<LogReg setLoggedin={setLoggedin} />} path="/" />
-          <Route element={<Dashboard setLoggedin={setLoggedin}/>} path="/home" />
+          <Route  path="/home" element={
+            <ProtectedRoute loggedin={loggedin}>
+              <Dashboard loggedin={loggedin} setLoggedin={setLoggedin}/>
+            </ProtectedRoute>
+          }/>
         </Routes>
       </section>
     </BrowserRouter>

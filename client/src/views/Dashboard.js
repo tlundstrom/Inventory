@@ -77,7 +77,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const theme = createTheme();
 
 const Dashboard = (props) =>{
-    const {setLoggedin} = props
+    const {loggedin, setLoggedin} = props
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -93,6 +93,7 @@ const Dashboard = (props) =>{
             .catch((err)=>{console.log(err)});
     }
 
+    if(!loggedin){return navigate("/")}
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{display:'flex'}}>
