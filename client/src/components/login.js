@@ -7,14 +7,16 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Link as RouterLink} from 'react-router-dom'
+import {Link as RouterLink, useNavigate} from 'react-router-dom'
 import {useState} from 'react';
 import axios from 'axios';
 
 const theme = createTheme();
 
+
 const Login = (props) => {
-    const {toggleForm} = props;
+    const navigate = useNavigate();
+    const {toggleForm, setLoggedin} = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -30,8 +32,8 @@ const Login = (props) => {
                 withCredentials: true
             })
             .then((res)=>{
-                console.log(res, "res");
-                console.log(res.data, "is res data");
+                setLoggedin(true);
+                navigate("/home")
             } )
             .catch(err => console.error(err));
 
@@ -88,16 +90,6 @@ const Login = (props) => {
                 </Box>
             </Container>
             <Link component={RouterLink} onClick={toggleForm} to="#">Need an Account?</Link>
-
-
-            {/* <form onSubmit={submitHandler}>
-                <label>Email:</label>
-                <input value={email} type="text" onChange={(e) => setEmail(e.target.value)} />
-                <label>Password:</label>
-                <input value={password} type="password" onChange={(e)=> setPassword(e.target.value)}/>
-                <input type="submit" value="Login" />
-            </form> */}
-            
         </ThemeProvider>
     )
 }

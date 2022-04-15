@@ -3,6 +3,7 @@ import Login from "../components/login";
 import Register from "../components/register";
 
 const LogReg = (props) =>{
+    const {setLoggedin} = props;
     const [haveAccount, setHaveAccount] = useState(true);
 
     const toggleForm = () =>{
@@ -13,8 +14,8 @@ const LogReg = (props) =>{
         <section>
             {
             haveAccount?
-            <Login toggleForm={toggleForm}/>
-            :<Register toggleForm={toggleForm}/>
+            <Login setLoggedin={setLoggedin} toggleForm={toggleForm}/>
+            :<Register setLoggedin={setLoggedin}  toggleForm={toggleForm}/>
             }
         </section>
     )
