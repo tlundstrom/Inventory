@@ -7,7 +7,7 @@ const LocationSchema = new Schema({
         required:[true, "Location name is required."],
         minlength:[2, "Location name must be at least 2 characters long."]
     },
-    locationTemp: {
+    temp: {
         type: String,
         enum:[
             "Dry Storage",
@@ -16,7 +16,7 @@ const LocationSchema = new Schema({
         ],
         required: [true, "Location temperature is required"]
     },
-    inventorySchedule: {
+    schedule: {
         type: String,
         enum: [
             "DNI",
