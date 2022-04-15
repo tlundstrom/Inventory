@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateDistributor from "../components/CreateDistributor";
+import CreateItem from "../components/CreateItem";
 import Distributors from "../components/Distributors";
+import Items from "../components/Items";
 import Dashboard from "./Dashboard";
 
 
@@ -10,8 +12,10 @@ const AuthApp = (props) =>{
             <section className="App">
                 <Routes>
                     <Route element={<Dashboard />} path="/home" />
-                    <Route element={<CreateDistributor/>} path="/dist" />
-                    <Route element={<Distributors/>} path="/showdist" />
+                    <Route element={<CreateDistributor/>} path="/newdist" />
+                    <Route element={<Distributors/>} path="/dists" />
+                    <Route element={<Items/>} path="items"/>
+                    <Route element={<CreateItem/>} path="newitem"/>
                     <Route element={<Dashboard />} path="*" />
                 </Routes>
             </section>
