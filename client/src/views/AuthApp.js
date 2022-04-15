@@ -4,6 +4,7 @@ import CreateItem from "../components/CreateItem";
 import CreateLocation from "../components/CreateLocation";
 import Distributors from "../components/Distributors";
 import Items from "../components/Items";
+import Locations from "../components/Locations";
 import Dashboard from "./Dashboard";
 
 
@@ -18,6 +19,7 @@ const AuthApp = (props) =>{
                     <Route element={<Items/>} path="/items"/>
                     <Route element={<CreateItem/>} path="newitem"/>
                     <Route element={<CreateLocation/>} path="newlocation"/>
+                    <Route element={<Locations/>} path="/locations"/>
                     <Route element={<Dashboard />} path="*" />
                 </Routes>
             </section>
