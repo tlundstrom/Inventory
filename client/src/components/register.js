@@ -101,7 +101,7 @@ const Register = (props) =>{
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
+                            id="reg-email"
                             label="Email Address"
                             name="email"
                             autoComplete="email"
@@ -115,7 +115,7 @@ const Register = (props) =>{
                             name="password"
                             label="Password"
                             type="password"
-                            id="password"
+                            id="reg-password"
                             value={user.password}
                             onChange={(e)=>{handleChange(e)}}
                         />
