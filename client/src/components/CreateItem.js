@@ -145,7 +145,6 @@ const CreateItem = (props) =>{
                         />
                         <TextField 
                             margin="normal"
-                            required
                             fullWidth
                             id="cost"
                             label="Cost"
@@ -165,7 +164,6 @@ const CreateItem = (props) =>{
                         />
                         <TextField 
                             margin="normal"
-                            required
                             fullWidth
                             id="amount"
                             label="Current Amount"

@@ -19,7 +19,7 @@ const CreateLocation = (props) =>{
         name: "",
         temp: "",
         schedule: "",
-        reminders: false,
+        reminders: true,
     })
 
     const handleChange = (e) =>{
@@ -28,6 +28,12 @@ const CreateLocation = (props) =>{
             [e.target.name]: e.target.value
         });
     };
+    const handleChecked = (e) =>{
+        setLocation({
+            ...location,
+            reminders: !location.reminders
+        })
+    }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -101,7 +107,7 @@ const CreateLocation = (props) =>{
                             <MenuItem value={'Bi-Yearly'}>Bi-Yearly</MenuItem>
                             <MenuItem value={'Yearly'}>Yearly</MenuItem>
                         </TextField>
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Inventory Reminders" />
+                        <FormControlLabel control={<Checkbox defaultChecked onChange={handleChecked}/>} label="Inventory Reminders" />
                         <Button 
                                 type="submit"
                                 fullWidth

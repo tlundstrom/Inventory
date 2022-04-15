@@ -9,7 +9,8 @@ const ItemSchema = new Schema({
     },
     location: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Locations"
+        ref: "Location",
+        required: [true, "Item location is required."]
     },
     unit: {
         type: String,
@@ -17,11 +18,11 @@ const ItemSchema = new Schema({
     },
     cost: {
         type: Number,
-        required: [true, "Item cost is required."]
     },
     distributor: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Distributor"
+        ref: "Distributor",
+        required: [true, "Item Distributor is required."]
     },
     par: {
         type: Number,
