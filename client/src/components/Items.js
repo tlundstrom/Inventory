@@ -13,6 +13,7 @@ const Items = (props) =>{
             .get("http://localhost:8000/api/items", {withCredentials: true})
             .then(res =>{
                 setItemsList(res.data);
+                console.log(res.data);
                 setLoaded(true);
             } )
             .catch(err => console.error(err));
@@ -33,7 +34,7 @@ const Items = (props) =>{
                                 </IconButton>
                             </section>
                         }>
-                            <ListItemText primary={item.itemName} />
+                            <ListItemText primary={item.name} />
                         </ListItem>
                     )
                 })

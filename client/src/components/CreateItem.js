@@ -10,9 +10,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import {MenuItem} from '@mui/material';
 
-
 const theme = createTheme();
-
 
 const CreateItem = (props) =>{
     const [loaded, setLoaded] = useState(false);
@@ -94,7 +92,8 @@ const CreateItem = (props) =>{
                             value={item.name}
                             onChange={(e)=>{handleChange(e)}}
                         />
-                            <TextField
+                        {
+                            loaded && <TextField
                                 margin="normal"
                                 fullWidth
                                 select
@@ -105,34 +104,33 @@ const CreateItem = (props) =>{
                                 value={item.location}
                                 onChange={(e)=>{handleChange(e)}}
                             >
-                                {
-                                    loaded && locations.map((location,index)=>{
-                                        return(
-                                            <MenuItem key={index} value={location.name}>{location.name}</MenuItem>
-                                        )
-                                    })
-                                }
+                                {locations.map((location,index)=>{
+                                    return(
+                                        <MenuItem key={index} value={location._id}>{location.name}</MenuItem>
+                                    )
+                                })}
                             </TextField>
-                            <TextField
-                                margin="normal"
-                                fullWidth
-                                select
-                                required
-                                id="distributor"
-                                labelId='distributor-label'
-                                label="Distributor"
-                                name="distributor"
-                                value={item.distributor}
-                                onChange={(e)=>{handleChange(e)}}
-                            >
-                                {
-                                    loaded && distributors.map((distributor,index)=>{
-                                        return(
-                                            <MenuItem key={index} value={distributor.distName}>{distributor.distName}</MenuItem>
-                                        )
-                                    })
-                                }
-                        </TextField>
+                            }{
+                                loaded && <TextField
+                                    margin="normal"
+                                    fullWidth
+                                    select
+                                    required
+                                    id="distributor"
+                                    label="Distributor"
+                                    name="distributor"
+                                    value={item.distributor}
+                                    onChange={(e)=>{handleChange(e)}}
+                                >
+                                    {
+                                        distributors.map((distributor,index)=>{
+                                            return(
+                                                <MenuItem key={index} value={distributor._id}>{distributor.distName}</MenuItem>
+                                            )
+                                        })
+                                    }
+                            </TextField>
+                            }
                         <TextField 
                             margin="normal"
                             required
@@ -140,7 +138,7 @@ const CreateItem = (props) =>{
                             id="unit"
                             label="Unit of Measurement"
                             name="unit"
-                            value={item.name}
+                            value={item.unit}
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <TextField 

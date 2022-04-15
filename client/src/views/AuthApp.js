@@ -15,7 +15,7 @@ const AuthApp = (props) =>{
                     <Route element={<Dashboard />} path="/home" />
                     <Route element={<CreateDistributor/>} path="/newdist" />
                     <Route element={<Distributors/>} path="/dists" />
-                    <Route element={<Items/>} path="items"/>
+                    <Route element={<Items/>} path="/items"/>
                     <Route element={<CreateItem/>} path="newitem"/>
                     <Route element={<CreateLocation/>} path="newlocation"/>
                     <Route element={<Dashboard />} path="*" />
