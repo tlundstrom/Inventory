@@ -5,14 +5,14 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 
 const Distributors = (props) =>{
-    const [distList, setDistlist] = useState([]);
+    const [distList, setDistList] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(()=>{
         axios
             .get("http://localhost:8000/api/distributors", {withCredentials: true})
             .then(res =>{
-                setDistlist(res.data);
+                setDistList(res.data);
                 setLoaded(true);
             } )
             .catch(err => console.error(err));
