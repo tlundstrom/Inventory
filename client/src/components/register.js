@@ -8,13 +8,17 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Grid } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Link as RouterLink} from 'react-router-dom'
+import {Link as RouterLink, useNavigate} from 'react-router-dom'
 import { useState } from "react";
 import axios from "axios";
+import { UserContext } from '../contexts/UserContext';
+import { useContext } from 'react';
 
 const theme = createTheme();
 
 const Register = (props) =>{
+    const navigate =useNavigate();
+    const {login} = useContext(UserContext);
     const {toggleForm} = props;
     const [user, setUser] =useState({
         name: "",
@@ -39,12 +43,25 @@ const Register = (props) =>{
             withCredentials: true
         })
             .then((res)=>{
-                setUser({
-                    name: "",
-                    email: "",
-                    password: "",
-                    confirm: ""
+                axios.post('http://localhost:8000/api/users/login',
+                {
+                    email: user.email,
+                    password: user.password
+                },
+                {
+                    withCredentials: true
                 })
+                .then((res)=>{
+                    setUser({
+                        name: "",
+                        email: "",
+                        password: "",
+                        confirm: ""
+                    })
+                    login();
+                } )
+                .catch(err => console.error(err));
+                navigate("/home")
                 console.log(res);
                 console.log("registered");
             })

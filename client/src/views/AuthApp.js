@@ -8,6 +8,7 @@ const AuthApp = (props) =>{
             <section className="App">
                 <Routes>
                     <Route element={<Dashboard />} path="/home" />
+                    <Route element={<Dashboard />} path="*" />
                 </Routes>
             </section>
         </BrowserRouter>
