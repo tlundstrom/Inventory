@@ -5,7 +5,6 @@ import AuthApp from './views/AuthApp';
 
 function App() {
   const { auth } = useContext(UserContext);
-  console.log(auth);
   return auth? <AuthApp /> : <UnauthApp />
 }
 
