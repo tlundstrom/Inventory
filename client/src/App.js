@@ -1,25 +1,12 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import LogReg from './views/LogReg';
-import Dashboard from './views/Dashboard';
-import { useState } from 'react';
-import ProtectedRoute from './components/ProtectedRoutes';
+import { useContext } from 'react';
+import { UserContext } from './contexts/UserContext';
+import UnauthApp from './views/UnathApp';
+import AuthApp from './views/AuthApp';
 
 function App() {
-  const [loggedin, setLoggedin] = useState(false);
-  return (
-    <BrowserRouter>
-      <section className="App">
-        <Routes>
-          <Route element={<LogReg setLoggedin={setLoggedin} />} path="/" />
-          <Route  path="/home" element={
-            <ProtectedRoute loggedin={loggedin}>
-              <Dashboard loggedin={loggedin} setLoggedin={setLoggedin}/>
-            </ProtectedRoute>
-          }/>
-        </Routes>
-      </section>
-    </BrowserRouter>
-  );
+  const { auth } = useContext(UserContext);
+  console.log(auth);
+  return auth? <AuthApp /> : <UnauthApp />
 }
 
 export default App;

@@ -11,13 +11,16 @@ import {Link as RouterLink, useNavigate} from 'react-router-dom'
 import {useState} from 'react';
 import axios from 'axios';
 import { Grid } from '@mui/material';
+import { useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
 
 const theme = createTheme();
 
 
 const Login = (props) => {
+    const { login } = useContext(UserContext);
     const navigate = useNavigate();
-    const {toggleForm, setLoggedin} = props;
+    const {toggleForm} = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -33,7 +36,7 @@ const Login = (props) => {
                 withCredentials: true
             })
             .then((res)=>{
-                setLoggedin(true);
+                login();
                 navigate("/home")
             } )
             .catch(err => console.error(err));
