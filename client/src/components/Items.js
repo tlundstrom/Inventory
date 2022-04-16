@@ -30,7 +30,7 @@ const Items = (props) =>{
         setOpen(true);
     };
     const handleEdit =(id)=>{
-        navigate(`edit/${id}`);
+        navigate(`/home/items/edit/${id}`);
     }
 
     const handleClose = () =>{

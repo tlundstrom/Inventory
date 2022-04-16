@@ -1,6 +1,7 @@
-import { Button, InputAdornment, List, ListItem, ListItemText, TextField } from "@mui/material";
+import {createTheme, ThemeProvider, Container, CssBaseline, Box, Button, InputAdornment, List, ListItem, ListItemText, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+const theme = createTheme();
 
 const TakeInventory = (props)=>{
     const [itemList, setItemList] = useState([]);
@@ -24,18 +25,31 @@ const TakeInventory = (props)=>{
         setItemList(newItemList);
     }
 
-    const handleSubmit = (e) =>{
-        // e.preventDefault();
-
-        // axios
-            // .put("")
-            // .then(res => )
-            // .catch(err => console.error(err));
-
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        itemList.map((item, index)=>{
+            axios.put(`http://localhost:8000/api/items/${item._id}`, item, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => console.error(err))
+                return
+        })
     }
 
     return(
-        <>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <Box
+                    sx={{
+                        marginTop: 4,
+                        marginBottom: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                 {itemList.map((item, index) => (
                     <ListItem
@@ -60,8 +74,10 @@ const TakeInventory = (props)=>{
                     </ListItem>
                 ))}
             </List>
-            {/* <Button sx={{width:.5}} onClick={()=>{handleSubmit}} variant="contained">Add Item</Button> */}
-        </>
+            <Button sx={{width:.5}} onClick={(e)=>{handleSubmit(e)}} variant="contained">Save</Button>
+            </Box>
+            </Container>
+        </ThemeProvider>
     )
 }
 
