@@ -39,7 +39,7 @@ const MobileFooter = (props) =>{
 
 
     return(
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <Paper sx={{ paddingBottom:'10px', position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
             <BottomNavigation
                 showLabels
                 value={value}
