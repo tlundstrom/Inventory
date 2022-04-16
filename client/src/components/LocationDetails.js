@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {Box, Typography, ThemeProvider, Container, CssBaseline, createTheme } from '@mui/material';
 import axios from 'axios';
 import LocationForm from './LocationForm';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 const theme=createTheme();

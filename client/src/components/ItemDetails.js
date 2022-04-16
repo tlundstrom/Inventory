@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import ItemForm from './ItemForm';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const ItemDetails = (props) =>{
     const [initialItem, setInitialItem] = useState({});
