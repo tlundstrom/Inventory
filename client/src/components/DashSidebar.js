@@ -20,7 +20,7 @@ import { UserContext } from '../contexts/UserContext';
 
 const DashSidebar = (props) =>{
     const { logout } = useContext(UserContext);
-    const { Drawer, open, toggleDrawer} = props;
+    const {setSelected, Drawer, open, toggleDrawer} = props;
     const navigate = useNavigate();
 
     const handleLogout = (e) => {
@@ -30,6 +30,10 @@ const DashSidebar = (props) =>{
                 navigate("/")
             })
             .catch((err)=>{console.log(err)});
+    }
+
+    const handleNav = (props) =>{
+        setSelected(props);
     }
     return(
         <Drawer variant="permanent" open={open}>
@@ -47,37 +51,37 @@ const DashSidebar = (props) =>{
             </Toolbar>
             <Divider />
             <List component="nav">
-            <ListItemButton onClick={(e)=>{navigate("/home")}}>
+            <ListItemButton onClick={()=>{handleNav('items')}}>
                 <ListItemIcon>
                     <DashboardIcon />
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
             </ListItemButton>
-            <ListItemButton onClick={(e)=>{navigate("/home")}}>
+            <ListItemButton onClick={()=>{handleNav('locations')}}>
                 <ListItemIcon>
                     <KitchenIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Locations" />
             </ListItemButton>
-            <ListItemButton onClick={(e)=>{navigate("/")}}>
+            <ListItemButton onClick={()=>{handleNav('dists')}}>
                 <ListItemIcon>
                     <GroupsIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Distributors" />
             </ListItemButton>
-            <ListItemButton onClick={(e)=>{navigate("/")}}>
+            <ListItemButton onClick={()=>{handleNav('items')}}>
                 <ListItemIcon>
                     <InventoryIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Inventory" />
             </ListItemButton>
                 <Divider sx={{ my: 1 }} />
-                    <ListItemButton onClick={(e)=>{navigate("/")}}>
+                    {/* <ListItemButton onClick={()=>{handleNav}}>
                         <ListItemIcon>
                             <SettingsIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Settings" />
-                    </ListItemButton>
+                    </ListItemButton> */}
                     <ListItemButton onClick={handleLogout}>
                         <ListItemIcon>
                             <LogoutIcon />

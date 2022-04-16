@@ -48,7 +48,7 @@ const Distributors = (props) =>{
 
     return(
         <>
-            <Typography component="h1" variant="h5">All Locations</Typography>
+            <Typography component="h1" variant="h5">All Distributors</Typography>
             <List sx={{ width: '100%', maxWidth: 360 }}>
                 {
                     loaded && distList.map((dist, index) =>{
