@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { createTheme, ThemeProvider, Container, CssBaseline, Box, TextField, Button, MenuItem } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 const ItemForm = (props)=>{
+    const navigate = useNavigate();
     const {errors, initialItem, submitProp} = props
     const [loaded, setLoaded] = useState(false);
     const [locations, setLocations] = useState([]);
@@ -23,6 +25,7 @@ const ItemForm = (props)=>{
         e.preventDefault();
             console.log(item);
             submitProp(item);
+            navigate('/items');
     }
 
     useEffect(()=>{
