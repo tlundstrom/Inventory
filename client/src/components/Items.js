@@ -20,7 +20,7 @@ const Items = (props) =>{
             .get("http://localhost:8000/api/items", {withCredentials: true})
             .then(res =>{
                 setItemsList(res.data);
-                console.log(res.data);
+                //console.log(res.data);
                 setLoaded(true);
             } )
             .catch(err => console.error(err));
@@ -30,7 +30,7 @@ const Items = (props) =>{
         setOpen(true);
     };
     const handleEdit =(id)=>{
-        navigate(`/items/edit/${id}`);
+        navigate(`edit/${id}`);
     }
 
     const handleClose = () =>{
@@ -70,6 +70,7 @@ const Items = (props) =>{
                     })
                 }
             </List>
+            <Button onClick={()=>{navigate('new')}} variant="contained">Add Item</Button>
             <Dialog
                 open={open}
                 onClose={handleClose}

@@ -8,10 +8,18 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import DashHeader from '../components/DashHeader';
 import DashSidebar from '../components/DashSidebar';
-import ItemsView from './ItemsView';
 import { Toolbar } from '@mui/material';
-import DistributorView from './DistributorView';
-import LocationView from './LocationView';
+import CreateDistributor from "../components/CreateDistributor";
+import CreateItem from "../components/CreateItem";
+import CreateLocation from "../components/CreateLocation";
+import DistributorDetails from "../components/DistributorDetails";
+import Distributors from "../components/Distributors";
+import ItemDetails from "../components/ItemDetails";
+import Items from "../components/Items";
+import LocationDetails from "../components/LocationDetails";
+import Locations from "../components/Locations";
+
+import { Route, Routes } from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -44,8 +52,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const theme = createTheme();
 
 const Dashboard = (props) =>{
-    const [selected, setSelected] = useState('items');
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const toggleDrawer = () => {
         setOpen(!open); 
     }
@@ -55,7 +62,7 @@ const Dashboard = (props) =>{
             <Box sx={{display:'flex'}}>
                 <CssBaseline/>
                 <DashHeader open={open} toggleDrawer={toggleDrawer} drawerWidth={drawerWidth}/>
-                <DashSidebar setSelected={setSelected} Drawer={Drawer} open={open} toggleDrawer={toggleDrawer}/>
+                <DashSidebar Drawer={Drawer} open={open} toggleDrawer={toggleDrawer}/>
                 <Box
                     component="main"
                     sx={{
@@ -77,24 +84,20 @@ const Dashboard = (props) =>{
                                         p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        height: 240,
                                     }}
                                 >
-                                    {
-                                        selected==='items'?
-                                        <ItemsView/>
-                                        :null
-                                    }
-                                    {
-                                        selected==='dists'?
-                                        <DistributorView/>
-                                        :null
-                                    }
-                                    {
-                                        selected==='locations'?
-                                        <LocationView/>
-                                        :null
-                                    }
+                                    <Routes>
+                                        <Route element={<CreateDistributor/>} path="/distributors/new" />
+                                        <Route element={<Distributors/>} path="/distributors" />
+                                        <Route element={<DistributorDetails/>} path="/distributors/edit/:id" />
+                                        <Route element={<Items/>} path="/items"/>
+                                        <Route element={<Items/>} path="/"/>
+                                        <Route element={<ItemDetails/>} path="/items/edit/:id"/>
+                                        <Route element={<CreateItem/>} path="/items/new"/>
+                                        <Route element={<CreateLocation/>} path="locations/new"/>
+                                        <Route element={<LocationDetails />} path="/locations/edit/:id"/>
+                                        <Route element={<Locations/>} path="/locations"/>
+                                    </Routes>
                                 </Paper>
                             </Grid>
                         </Grid>

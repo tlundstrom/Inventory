@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import ItemForm from './ItemForm';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
 import { createTheme, ThemeProvider, Container, CssBaseline, Box,} from '@mui/material';
+
 
 const theme = createTheme();
 
 const ItemDetails = (props) =>{
+    const navigate = useNavigate();
     const [initialItem, setInitialItem] = useState({});
     const [loaded, setLoaded] = useState(false);
     const [errors, setErrors] = useState({});
@@ -35,6 +37,7 @@ const ItemDetails = (props) =>{
         axios
             .put(`http://localhost:8000/api/items/${id}`, initialItem, {withCredentials:true})
             .then(res => {
+                navigate('/home/items');
             })
             .catch(err => {
                 console.log(err)

@@ -3,9 +3,11 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import ItemForm from './ItemForm';
 import { createTheme, ThemeProvider, Container, CssBaseline, Box,} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 const CreateItem = (props) =>{
+    const navigate = useNavigate();
     const [errors, setErrors] = useState({});
     const [initialItem, setInitialItem] = useState({
         name: "",
@@ -26,6 +28,7 @@ const CreateItem = (props) =>{
             )
             .then(res =>{
                 console.log(res);
+                navigate('/home/items');
             })
             .catch(err =>{
                 setErrors(err.response.data.errors);

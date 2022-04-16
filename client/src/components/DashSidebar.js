@@ -20,7 +20,7 @@ import { UserContext } from '../contexts/UserContext';
 
 const DashSidebar = (props) =>{
     const { logout } = useContext(UserContext);
-    const {setSelected, Drawer, open, toggleDrawer} = props;
+    const { Drawer, open, toggleDrawer} = props;
     const navigate = useNavigate();
 
     const handleLogout = (e) => {
@@ -33,7 +33,7 @@ const DashSidebar = (props) =>{
     }
 
     const handleNav = (props) =>{
-        setSelected(props);
+        navigate(props);
     }
     return(
         <Drawer variant="permanent" open={open}>
@@ -51,7 +51,7 @@ const DashSidebar = (props) =>{
             </Toolbar>
             <Divider />
             <List component="nav">
-            <ListItemButton onClick={()=>{handleNav('items')}}>
+            <ListItemButton onClick={()=>{handleNav('')}}>
                 <ListItemIcon>
                     <DashboardIcon />
                 </ListItemIcon>
@@ -63,7 +63,7 @@ const DashSidebar = (props) =>{
                 </ListItemIcon>
                 <ListItemText primary="Locations" />
             </ListItemButton>
-            <ListItemButton onClick={()=>{handleNav('dists')}}>
+            <ListItemButton onClick={()=>{handleNav('distributors')}}>
                 <ListItemIcon>
                     <GroupsIcon/>
                 </ListItemIcon>

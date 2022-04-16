@@ -6,8 +6,7 @@ const UnauthApp = (props) =>{
         <BrowserRouter>
             <section className="App">
                 <Routes>
-                    <Route element={<LogReg />} path="/" />
-                    <Route element={<LogReg />} path="*" />
+                    <Route element={<LogReg />} path="/*" />
                 </Routes>
             </section>
         </BrowserRouter>
