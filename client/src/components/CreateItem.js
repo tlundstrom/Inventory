@@ -1,22 +1,13 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
+import { useState } from 'react';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {MenuItem} from '@mui/material';
+import ItemForm from './ItemForm';
 
-const theme = createTheme();
+
 
 const CreateItem = (props) =>{
-    const [loaded, setLoaded] = useState(false);
-    const [locations, setLocations] = useState([]);
-    const [distributors, setDistributors] = useState([]);
-    const [item, setItem] = useState({
+    const [errors, setErrors] = useState({});
+    const [initialItem, setInitialItem] = useState({
         name: "",
         location: "",
         unit: "",
@@ -27,34 +18,7 @@ const CreateItem = (props) =>{
         createdBy:""
     })
 
-    useEffect(()=>{
-        axios
-            .get("http://localhost:8000/api/locations", {withCredentials:true})
-            .then(res =>{
-                setLocations(res.data);
-                axios
-                    .get("http://localhost:8000/api/distributors", {withCredentials: true})
-                    .then(res =>{
-                        setDistributors(res.data);
-                        console.log(distributors[0])
-                        setLoaded(true);
-                    })
-                    .catch(err => console.error(err));
-            })
-            .catch(err => console.error(err));
-        
-    }, [])
-
-    const handleChange = (e) =>{
-        setItem({
-            ...item,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-
+    const createItem = (item) =>{
         axios
             .post("http://localhost:8000/api/items",
                 item,
@@ -63,124 +27,19 @@ const CreateItem = (props) =>{
             .then(res =>{
                 console.log(res);
             })
-            .catch(err => console.error(err));
+            .catch(err =>{
+                setErrors(err.response.data.errors);
+                console.log(err);
+                console.log(err.response.data.errors);
+            })
     }
 
 
     return (
-
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline/>
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Typography component="h1" variant="h5">Enter a new Item</Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="name"
-                            label="Item Name"
-                            name="name"
-                            value={item.name}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        {
-                            loaded && <TextField
-                                margin="normal"
-                                fullWidth
-                                select
-                                required
-                                id="location"
-                                label="Location"
-                                name="location"
-                                value={item.location}
-                                onChange={(e)=>{handleChange(e)}}
-                            >
-                                {locations.map((location,index)=>{
-                                    return(
-                                        <MenuItem key={index} value={location._id}>{location.name}</MenuItem>
-                                    )
-                                })}
-                            </TextField>
-                            }{
-                                loaded && <TextField
-                                    margin="normal"
-                                    fullWidth
-                                    select
-                                    required
-                                    id="distributor"
-                                    label="Distributor"
-                                    name="distributor"
-                                    value={item.distributor}
-                                    onChange={(e)=>{handleChange(e)}}
-                                >
-                                    {
-                                        distributors.map((distributor,index)=>{
-                                            return(
-                                                <MenuItem key={index} value={distributor._id}>{distributor.distName}</MenuItem>
-                                            )
-                                        })
-                                    }
-                            </TextField>
-                            }
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="unit"
-                            label="Unit of Measurement"
-                            name="unit"
-                            value={item.unit}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <TextField 
-                            margin="normal"
-                            fullWidth
-                            id="cost"
-                            label="Cost"
-                            name="cost"
-                            value={item.cost}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="par"
-                            label="Par"
-                            name="par"
-                            value={item.par}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <TextField 
-                            margin="normal"
-                            fullWidth
-                            id="amount"
-                            label="Current Amount"
-                            name="amount"
-                            value={item.amount}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <Button 
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        > 
-                            Submit
-                        </Button>
-                    </Box>
-                </Box>
-            </Container>
-        </ThemeProvider>
+        <>
+            <Typography component="h1" variant="h5">Enter a new Item</Typography>
+            <ItemForm errors={errors} initialItem={initialItem} submitProp={createItem} />
+        </>
     )
 }
 
