@@ -71,10 +71,10 @@ const Items = (props) =>{
                 }
             </List>
             <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">{"Confirm Item Delete"}</DialogTitle>
                 <DialogContent>
