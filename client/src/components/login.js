@@ -42,8 +42,6 @@ const Login = (props) => {
             .catch(err => console.error(err));
 
     }
-
-    
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs" >
