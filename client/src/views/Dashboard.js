@@ -18,9 +18,8 @@ import ItemDetails from "../components/ItemDetails";
 import Items from "../components/Items";
 import LocationDetails from "../components/LocationDetails";
 import Locations from "../components/Locations";
-
 import { Route, Routes } from 'react-router-dom';
-import TakeInventory from '../components/TakeInventory';
+import Inventory from '../components/Inventory';
 
 
 const drawerWidth = 240;
@@ -79,28 +78,18 @@ const Dashboard = (props) =>{
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}>
-                            <Grid item xs={12} md={8} lg={9}>
-                                <Paper
-                                    sx={{
-                                        p: 2,
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                    }}
-                                >
                                     <Routes>
                                         <Route element={<CreateDistributor/>} path="/distributors/new" />
                                         <Route element={<Distributors/>} path="/distributors" />
                                         <Route element={<DistributorDetails/>} path="/distributors/edit/:id" />
                                         <Route element={<Items/>} path="/items"/>
-                                        <Route element={<TakeInventory/>} path="/"/>
+                                        <Route element={<Inventory/>} path="/"/>
                                         <Route element={<ItemDetails/>} path="/items/edit/:id"/>
                                         <Route element={<CreateItem/>} path="/items/new"/>
                                         <Route element={<CreateLocation/>} path="locations/new"/>
                                         <Route element={<LocationDetails />} path="/locations/edit/:id"/>
                                         <Route element={<Locations/>} path="/locations"/>
                                     </Routes>
-                                </Paper>
-                            </Grid>
                         </Grid>
                     </Container>
                 </Box>

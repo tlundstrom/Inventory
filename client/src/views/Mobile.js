@@ -16,9 +16,9 @@ import Items from "../components/Items";
 import LocationDetails from "../components/LocationDetails";
 import Locations from "../components/Locations";
 import { Route, Routes } from 'react-router-dom';
-import TakeInventory from '../components/TakeInventory';
 import MobileHeader from '../components/MobileHeader';
 import MobileFooter from '../components/MobileFooter';
+import Inventory from '../components/Inventory';
 
 const theme = createTheme();
 
@@ -58,7 +58,7 @@ const Mobile = (props) =>{
                                         <Route element={<Distributors/>} path="/distributors" />
                                         <Route element={<DistributorDetails/>} path="/distributors/edit/:id" />
                                         <Route element={<Items/>} path="/items"/>
-                                        <Route element={<TakeInventory/>} path="/"/>
+                                        <Route element={<Inventory/>} path="/"/>
                                         <Route element={<ItemDetails/>} path="/items/edit/:id"/>
                                         <Route element={<CreateItem/>} path="/items/new"/>
                                         <Route element={<CreateLocation/>} path="locations/new"/>
