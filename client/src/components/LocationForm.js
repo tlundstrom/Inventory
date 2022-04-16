@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import { FormControlLabel, Checkbox, Box, TextField, Button, MenuItem } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+
 
 
 const LocationForm = (props)=>{
-    const navigate = useNavigate();
+
     const {errors, initialLocation, submitProp} = props
     const [location, setLocation] = useState(initialLocation);
 
@@ -23,9 +23,8 @@ const LocationForm = (props)=>{
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-            console.log(location);
             submitProp(location);
-            navigate('/locations');
+            console.log(errors);
     }
     return(
 

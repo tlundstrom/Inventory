@@ -3,7 +3,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {useState} from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DistributorForm from './DistributorForm';
 
@@ -12,6 +13,7 @@ const theme = createTheme();
 
 
 const CreateDistributor = (props) =>{
+    const navigate = useNavigate();
     const [errors, setErrors] = useState({});
     const [initialDistributor, setInitialDistributor] = useState({
         distName: "",
@@ -29,10 +31,11 @@ const CreateDistributor = (props) =>{
             )
             .then(res =>{
                 console.log(res);
+                navigate('/home/items')
             })
             .catch(err => {
                 console.error(err);
-                setErrors(err.resonse.data.errors);
+                setErrors(err.response.data.errors);
             });
     }
 

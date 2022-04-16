@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import {Box, Typography, ThemeProvider, Container, CssBaseline, createTheme } from '@mui/material';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import DistributorForm from './DistributorForm';
 
 const theme=createTheme();
 
 const DistributorDetails = (props) =>{
+    const navigate = useNavigate();
     const [initialDistributor, setInitialDistributor] = useState({});
     const [loaded, setLoaded] = useState(false);
     const [errors, setErrors] = useState({});
@@ -35,6 +36,7 @@ const DistributorDetails = (props) =>{
         axios
             .put(`http://localhost:8000/api/distributors/${id}`, initialDistributor, {withCredentials:true})
             .then(res => {
+                navigate('/home/distributors');
             })
             .catch(err => {
                 console.log(err)

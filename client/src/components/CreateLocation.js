@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useState} from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 import LocationForm from './LocationForm';
 
 
@@ -15,6 +15,7 @@ const theme = createTheme();
 
 
 const CreateLocation = (props) =>{
+    const navigate = useNavigate();
     const [initialLocation, setInitialLocation] = useState({
         name: "",
         temp: "",
@@ -32,10 +33,11 @@ const CreateLocation = (props) =>{
             )
             .then(res =>{
                 console.log(res);
+                navigate('/home/items')
             })
             .catch(err => {
                 console.error(err);
-                setErrors(err.resonse.data.errors);
+                setErrors(err.response.data.errors);
             });
     }
 

@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import {Box, Typography, ThemeProvider, Container, CssBaseline, createTheme } from '@mui/material';
 import axios from 'axios';
 import LocationForm from './LocationForm';
-import { useParams } from 'react-router-dom';
-
+import { useNavigate, useParams } from 'react-router-dom';
 
 const theme=createTheme();
 
 const LocationDetails = (props) =>{
+    const navigate = useNavigate();
     const [initialLocation, setInitialLocation] = useState({});
     const [loaded, setLoaded] = useState(false);
     const [errors, setErrors] = useState({});
@@ -35,6 +35,7 @@ const LocationDetails = (props) =>{
         axios
             .put(`http://localhost:8000/api/locations/${id}`, initialLocation, {withCredentials:true})
             .then(res => {
+                navigate('/home/locations')
             })
             .catch(err => {
                 console.log(err)

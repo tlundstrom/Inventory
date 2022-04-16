@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { Box, TextField, Button } from "@mui/material";
 import { useState } from "react";
 
 const DistributorForm = (props) =>{
-    const navigate = useNavigate();
+    
     const {errors, initialDistributor, submitProp} = props
     const [distributor, setDistributor] = useState(initialDistributor);
 
@@ -17,7 +16,6 @@ const DistributorForm = (props) =>{
         e.preventDefault();
             console.log(distributor);
             submitProp(distributor);
-            navigate('/distributors');
     }
 
     return(
