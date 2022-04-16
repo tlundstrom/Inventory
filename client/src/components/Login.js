@@ -42,7 +42,8 @@ const Login = (props) => {
             } )
             .catch(err => {
                 console.error(err);
-                setErrors(err.resonse.data.errors);
+                setErrors(err.response.data);
+                console.log(errors);
             });
 
     }
@@ -62,8 +63,7 @@ const Login = (props) => {
                     <Typography component="h1" variant="h5">Sign in</Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
-                            error={!!errors.email}
-                            helperText={errors.email?errors.email.message:null}
+                        error={!!errors}
                             margin="normal"
                             required
                             fullWidth
@@ -76,8 +76,7 @@ const Login = (props) => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField
-                            error={!!errors.password}
-                            helperText={errors.password?errors.password.message:null}
+                        error={!!errors}
                             margin="normal"
                             required
                             fullWidth
@@ -89,6 +88,9 @@ const Login = (props) => {
                             value={password}
                             onChange={(e)=> setPassword(e.target.value)}
                         />
+                        {
+                            errors?<Typography sx={{color: theme.palette.error.main, textAlign: 'center'}} >{errors.message}</Typography>:null
+                        }
                         <Button
                             type="submit"
                             fullWidth

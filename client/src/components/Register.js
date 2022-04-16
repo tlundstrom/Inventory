@@ -63,7 +63,6 @@ const Register = (props) =>{
                 } )
                 .catch(err => {
                     console.error(err);
-                    setErrors(err.response.data.errors);
                 });
                 navigate("/home")
 
