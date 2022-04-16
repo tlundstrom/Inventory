@@ -61,7 +61,7 @@ const Distributors = (props) =>{
                     }}
                 >
             <Typography component="h1" variant="h5">All Distributors</Typography>
-            <List sx={{ width: '100%', maxWidth: 360 }}>
+            <List sx={{ marginTop:2, marginBottom:2, width: '100%', maxWidth: 360 }}>
                 {
                     loaded && distList.map((dist, index) =>{
                         return(
