@@ -3,11 +3,11 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { Typography, Dialog, Button, DialogContent, DialogActions,DialogContentText, DialogTitle } from "@mui/material";
+import { createTheme, Container,CssBaseline, Box, ThemeProvider, Typography, Dialog, Button, DialogContent, DialogActions,DialogContentText, DialogTitle } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 
-
+const theme= createTheme();
 const Items = (props) =>{
     const [itemsList, setItemsList] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -48,7 +48,18 @@ const Items = (props) =>{
     }
 
     return(
-        <>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <Box
+                    sx={{
+                        marginTop: 4,
+                        marginBottom: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
             <Typography component="h1" variant="h5">All Items</Typography>
             <List sx={{ width: '100%', maxWidth: 360 }}>
                 {
@@ -70,7 +81,7 @@ const Items = (props) =>{
                     })
                 }
             </List>
-            <Button onClick={()=>{navigate('new')}} variant="contained">Add Item</Button>
+            <Button sx={{width:.5}} onClick={()=>{navigate('new')}} variant="contained">Add Item</Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -88,7 +99,9 @@ const Items = (props) =>{
                     <Button onClick={handleDelete}>Delete</Button>
                 </DialogActions>
             </Dialog>
-        </>
+            </Box>
+            </Container>
+        </ThemeProvider>
     )
 
 }

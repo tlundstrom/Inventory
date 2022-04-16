@@ -1,4 +1,4 @@
-import { IconButton, List, ListItem, ListItemText } from "@mui/material";
+import {createTheme, ThemeProvider, Container, CssBaseline, Box, IconButton, List, ListItem, ListItemText } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { Typography, Dialog, Button, DialogContent, DialogActions,DialogContentText, DialogTitle } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+const theme = createTheme()
 const Locations = (props) =>{
     const [locationList, setLocationList] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -48,7 +49,18 @@ const Locations = (props) =>{
     }
 
     return(
-        <>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <Box
+                    sx={{
+                        marginTop: 4,
+                        marginBottom: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
             <Typography component="h1" variant="h5">All Locations</Typography>
             <List sx={{ width: '100%', maxWidth: 360 }}>
                 {
@@ -70,6 +82,7 @@ const Locations = (props) =>{
                     })
                 }
             </List>
+            <Button sx={{width:.5}} onClick={()=>{navigate('new')}} variant="contained">Add Location</Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -87,7 +100,9 @@ const Locations = (props) =>{
                     <Button onClick={handleDelete}>Delete</Button>
                 </DialogActions>
             </Dialog>
-        </>
+            </Box>
+            </Container>
+        </ThemeProvider>
         
     )
 

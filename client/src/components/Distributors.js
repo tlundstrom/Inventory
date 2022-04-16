@@ -1,4 +1,4 @@
-import {Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, IconButton, List, ListItem, ListItemText } from "@mui/material";
+import {createTheme, ThemeProvider,Container, CssBaseline, Box, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, IconButton, List, ListItem, ListItemText } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 
+const theme = createTheme();
 const Distributors = (props) =>{
     const navigate = useNavigate();
     const [distList, setDistList] = useState([]);
@@ -47,7 +48,18 @@ const Distributors = (props) =>{
     },[])
 
     return(
-        <>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <Box
+                    sx={{
+                        marginTop: 4,
+                        marginBottom: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
             <Typography component="h1" variant="h5">All Distributors</Typography>
             <List sx={{ width: '100%', maxWidth: 360 }}>
                 {
@@ -69,6 +81,7 @@ const Distributors = (props) =>{
                     })
                 }
             </List>
+            <Button sx={{width:.5}} onClick={()=>{navigate('new')}} variant="contained">Add Distributor</Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -86,7 +99,9 @@ const Distributors = (props) =>{
                     <Button onClick={handleDelete}>Delete</Button>
                 </DialogActions>
             </Dialog>
-        </>
+            </Box>
+            </Container>
+        </ThemeProvider>
         
         
     )

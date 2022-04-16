@@ -41,7 +41,8 @@ const CreateDistributor = (props) =>{
                 <CssBaseline/>
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 4,
+                        marginBottom: 4,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
