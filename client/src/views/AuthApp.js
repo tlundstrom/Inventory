@@ -3,6 +3,7 @@ import CreateDistributor from "../components/CreateDistributor";
 import CreateItem from "../components/CreateItem";
 import CreateLocation from "../components/CreateLocation";
 import Distributors from "../components/Distributors";
+import ItemDetails from "../components/ItemDetails";
 import Items from "../components/Items";
 import Locations from "../components/Locations";
 import Dashboard from "./Dashboard";
@@ -17,6 +18,7 @@ const AuthApp = (props) =>{
                     <Route element={<CreateDistributor/>} path="/newdist" />
                     <Route element={<Distributors/>} path="/dists" />
                     <Route element={<Items/>} path="/items"/>
+                    <Route element={<ItemDetails/>} path="/items/edit/:id"/>
                     <Route element={<CreateItem/>} path="newitem"/>
                     <Route element={<CreateLocation/>} path="newlocation"/>
                     <Route element={<Locations/>} path="/locations"/>
