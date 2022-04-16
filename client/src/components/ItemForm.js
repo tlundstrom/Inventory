@@ -46,6 +46,7 @@ const ItemForm = (props)=>{
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         
                         <TextField 
+                            size="small"
                             error={!!errors.name}
                             helperText={errors.name?errors.name.message:null}
                             margin="normal"
@@ -59,8 +60,9 @@ const ItemForm = (props)=>{
                         />
                         {
                             loaded && <TextField
+                                size="small"
                                 error={!!errors.location}
-                                helperText="Location is required."
+                                helperText={errors.location?"Location is required.":null}
                                 margin="normal"
                                 fullWidth
                                 select
@@ -79,8 +81,9 @@ const ItemForm = (props)=>{
                             </TextField>
                             }{
                                 loaded && <TextField
+                                    size="small"
                                     error={!!errors.distributor}
-                                    helperText="Distributor is required."
+                                    helperText={errors.location?"Distributor is required.":null}
                                     margin="normal"
                                     fullWidth
                                     select
@@ -101,6 +104,7 @@ const ItemForm = (props)=>{
                             </TextField>
                             }
                         <TextField 
+                            size="small"
                             error={errors.unit?true:false}
                             helperText={errors.unit?errors.unit.message:null}
                             margin="normal"
@@ -113,7 +117,7 @@ const ItemForm = (props)=>{
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <TextField 
-
+                            size="small"
                             margin="normal"
                             fullWidth
                             id="cost"
@@ -123,6 +127,7 @@ const ItemForm = (props)=>{
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <TextField 
+                            size="small"
                             error={!!errors.par}
                             margin="normal"
                             fullWidth
@@ -133,6 +138,7 @@ const ItemForm = (props)=>{
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <TextField 
+                            size="small"
                             margin="normal"
                             fullWidth
                             id="amount"
@@ -142,6 +148,7 @@ const ItemForm = (props)=>{
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <Button 
+                            size="small"
                             type="submit"
                             fullWidth
                             variant="contained"

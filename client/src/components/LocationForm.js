@@ -31,6 +31,7 @@ const LocationForm = (props)=>{
 
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField 
+            size="small"
             margin="normal"
             required
             fullWidth
@@ -41,6 +42,7 @@ const LocationForm = (props)=>{
             onChange={(e)=>{handleChange(e)}}
         />
         <TextField 
+            size="small"
             select
             margin="normal"
             required
@@ -56,6 +58,7 @@ const LocationForm = (props)=>{
             <MenuItem value={'Frozen'}>Frozen</MenuItem>
         </TextField>
         <TextField 
+            size="small"
             select
             margin="normal"
             required
@@ -74,12 +77,13 @@ const LocationForm = (props)=>{
         </TextField>
         <FormControlLabel control={<Checkbox checked={location.reminders} onChange={handleChecked}/>} label="Inventory Reminders" />
         <Button 
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+            size="small"
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
             > 
-                Submit
+            Submit
         </Button>
     </Box>
     )

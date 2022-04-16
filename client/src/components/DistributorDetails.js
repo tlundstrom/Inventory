@@ -55,7 +55,7 @@ const DistributorDetails = (props) =>{
                         alignItems: 'center',
                     }}
                 >
-                    <Typography component="h1" variant="h5">Edit {initialDistributor.name}</Typography>
+                    <Typography component="h1" variant="h5">Edit {initialDistributor.distName}</Typography>
                     {
                         loaded && !errors.message?
                         <DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={updateDistributor} />

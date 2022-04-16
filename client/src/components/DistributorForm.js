@@ -23,6 +23,7 @@ const DistributorForm = (props) =>{
     return(
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField 
+                size="small"
                 margin="normal"
                 required
                 fullWidth
@@ -33,6 +34,7 @@ const DistributorForm = (props) =>{
                 onChange={(e)=>{handleChange(e)}}
             />
             <TextField 
+                size="small"
                 margin="normal"
                 required
                 fullWidth
@@ -43,6 +45,7 @@ const DistributorForm = (props) =>{
                 onChange={(e)=>{handleChange(e)}}
             />
             <TextField 
+                size="small"
                 margin="normal"
                 required
                 fullWidth
@@ -53,6 +56,7 @@ const DistributorForm = (props) =>{
                 onChange={(e)=>{handleChange(e)}}
             />
             <TextField 
+                size="small"
                 margin="normal"
                 required
                 fullWidth
@@ -63,13 +67,14 @@ const DistributorForm = (props) =>{
                 onChange={(e)=>{handleChange(e)}}
             />
             <Button 
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
+                size="small"
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
                 > 
-                    Submit
-                </Button>
+                Submit
+            </Button>
         </Box>
     )
 }

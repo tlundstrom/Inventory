@@ -60,7 +60,7 @@ const ItemDetails = (props) =>{
                         alignItems: 'center',
                     }}
                 >
-            <Typography component="h1" variant="h5">Enter a new Item</Typography>
+            <Typography component="h1" variant="h5">Edit {initialItem.name}</Typography>
             {
                 loaded && !errors.message?
                 <ItemForm errors={errors} initialItem={initialItem} submitProp={updateItem} />

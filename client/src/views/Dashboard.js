@@ -20,6 +20,7 @@ import LocationDetails from "../components/LocationDetails";
 import Locations from "../components/Locations";
 
 import { Route, Routes } from 'react-router-dom';
+import TakeInventory from '../components/TakeInventory';
 
 
 const drawerWidth = 240;
@@ -97,6 +98,7 @@ const Dashboard = (props) =>{
                                         <Route element={<CreateLocation/>} path="locations/new"/>
                                         <Route element={<LocationDetails />} path="/locations/edit/:id"/>
                                         <Route element={<Locations/>} path="/locations"/>
+                                        <Route element={<TakeInventory/>} path="/inventory"/>
                                     </Routes>
                                 </Paper>
                             </Grid>

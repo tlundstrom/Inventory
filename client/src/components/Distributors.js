@@ -34,7 +34,7 @@ const Distributors = (props) =>{
     }
 
     const handleEdit =(id)=>{
-        navigate(`/dists/edit/${id}`);
+        navigate(`/distributors/edit/${id}`);
     }
 
     useEffect(()=>{
