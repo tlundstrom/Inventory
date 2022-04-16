@@ -4,13 +4,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { Typography, Dialog, Button, DialogContent, DialogActions,DialogContentText, DialogTitle } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Items = (props) =>{
     const [itemsList, setItemsList] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [open, setOpen] = useState(false);
     const [itemDelete, setItemDelete] = useState({})
-
+    const navigate = useNavigate();
 
     useEffect(()=>{
         axios
@@ -26,6 +29,9 @@ const Items = (props) =>{
         setItemDelete(item);
         setOpen(true);
     };
+    const handleEdit =(id)=>{
+        navigate(`/items/edit/${id}`);
+    }
 
     const handleClose = () =>{
         setOpen(false);
@@ -53,7 +59,7 @@ const Items = (props) =>{
                                     <IconButton onClick={()=>handleOpen(item)}>
                                         <DeleteForeverIcon/>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton onClick={()=>handleEdit(item._id)}>
                                         <EditIcon/>
                                     </IconButton>
                                 </section>
