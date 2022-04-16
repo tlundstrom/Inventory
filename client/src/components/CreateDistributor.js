@@ -1,20 +1,19 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useState} from 'react';
 import axios from 'axios';
+import DistributorForm from './DistributorForm';
 
 
 const theme = createTheme();
 
 
 const CreateDistributor = (props) =>{
-    const [distributor, setDistributor] = useState({
+    const [errors, setErrors] = useState({});
+    const [initialDistributor, setInitialDistributor] = useState({
         distName: "",
         repName: "",
         phoneNumber: "",
@@ -22,17 +21,7 @@ const CreateDistributor = (props) =>{
         orderDays: "",
         createdBy:""
     })
-
-    const handleChange = (e) =>{
-        setDistributor({
-            ...distributor,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-
+    const createDistributor = (distributor) =>{
         axios
             .post("http://localhost:8000/api/distributors",
                 distributor,
@@ -59,56 +48,7 @@ const CreateDistributor = (props) =>{
                     }}
                 >
                     <Typography component="h1" variant="h5">Enter a new Distributor</Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="distName"
-                            label="Distributor Name"
-                            name="distName"
-                            value={distributor.distName}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="repName"
-                            label="Sales Rep Name"
-                            name="repName"
-                            value={distributor.repName}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="repEmail"
-                            label="Sales Rep Email"
-                            name="repEmail"
-                            value={distributor.repEmail}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="phoneNumber"
-                            label="Phone Number"
-                            name="phoneNumber"
-                            value={distributor.phoneNumber}
-                            onChange={(e)=>{handleChange(e)}}
-                        />
-                        <Button 
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            > 
-                                Submit
-                            </Button>
-                    </Box>
+                    <DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={createDistributor} />
                 </Box>
             </Container>
         </ThemeProvider>

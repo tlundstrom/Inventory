@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const LocationForm = (props)=>{
     const navigate = useNavigate();
     const {errors, initialLocation, submitProp} = props
-    const [loaded, setLoaded] = useState(false);
     const [location, setLocation] = useState(initialLocation);
 
     const handleChange = (e) =>{
