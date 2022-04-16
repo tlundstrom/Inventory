@@ -1,7 +1,17 @@
-import {createTheme, ThemeProvider, Container, CssBaseline, Box, Button, InputAdornment, List, ListItem, ListItemText, TextField } from "@mui/material";
+import {createTheme, ThemeProvider, Container, CssBaseline, Box, Button, InputAdornment, List, ListItem, ListItemText, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-const theme = createTheme();
+const theme = createTheme({
+    components: {
+        MuiListItemSecondaryAction: {
+            styleOverrides: {
+                root: {
+                    width:'50%',
+                },
+            },
+        },
+    },
+});
 
 const TakeInventory = (props)=>{
     const [itemList, setItemList] = useState([]);
@@ -41,6 +51,7 @@ const TakeInventory = (props)=>{
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
+                
                 <Box
                     sx={{
                         marginTop: 4,
@@ -50,32 +61,34 @@ const TakeInventory = (props)=>{
                         alignItems: 'center',
                     }}
                 >
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                {itemList.map((item, index) => (
-                    <ListItem
-                    key={index}
+                    <Typography component="h1" variant="h5">Take Inventory</Typography>
+                    <List  sx={{marginTop:2, marginBottom:2, width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                        {itemList.map((item, index) => (
+                            <ListItem
+                            key={index}
 
-                    secondaryAction={
-                        <TextField
-                        size="small"
-                        margin="normal"
-                        id="amount"
-                        label="Stock Level"
-                        name="amount"
-                        onChange={(e)=>{handleChange(e, index, item)}}
-                        value={item.amount}
-                        InputProps={{
-                            endAdornment: <InputAdornment position="end">{item.unit}</InputAdornment>,
-                        }}
-                        />
-                    }
-                    >
-                    <ListItemText primary={item.name} />
-                    </ListItem>
-                ))}
-            </List>
-            <Button sx={{width:.5}} onClick={(e)=>{handleSubmit(e)}} variant="contained">Save</Button>
-            </Box>
+                            secondaryAction={
+                                <TextField
+                                position="end"
+                                size="small"
+                                margin="normal"
+                                id="amount"
+                                label="Stock Level"
+                                name="amount"
+                                onChange={(e)=>{handleChange(e, index, item)}}
+                                value={item.amount}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">{item.unit}</InputAdornment>,
+                                }}
+                                />
+                            }
+                            >
+                                <ListItemText primary={item.name} />
+                            </ListItem>
+                        ))}
+                    </List>
+                    <Button  sx={{width:.5}} onClick={(e)=>{handleSubmit(e)}} variant="contained">Save</Button>
+                </Box>
             </Container>
         </ThemeProvider>
     )

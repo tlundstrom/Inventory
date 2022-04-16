@@ -58,13 +58,12 @@ const Mobile = (props) =>{
                                         <Route element={<Distributors/>} path="/distributors" />
                                         <Route element={<DistributorDetails/>} path="/distributors/edit/:id" />
                                         <Route element={<Items/>} path="/items"/>
-                                        <Route element={<Items/>} path="/"/>
+                                        <Route element={<TakeInventory/>} path="/"/>
                                         <Route element={<ItemDetails/>} path="/items/edit/:id"/>
                                         <Route element={<CreateItem/>} path="/items/new"/>
                                         <Route element={<CreateLocation/>} path="locations/new"/>
                                         <Route element={<LocationDetails />} path="/locations/edit/:id"/>
                                         <Route element={<Locations/>} path="/locations"/>
-                                        <Route element={<TakeInventory/>} path="/inventory"/>
                                     </Routes>
                                 </Paper>
                             </Grid>
