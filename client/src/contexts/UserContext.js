@@ -8,7 +8,7 @@ const UserContext = createContext(false)
 const UserProvider = ({ children }) => {
     const [auth, setAuth] = useState( ()=>{
         const localData = JSON.parse(localStorage.getItem('auth'));
-        return localData === null? false: true
+        return localData;
     });
 
     const login = () => {
@@ -20,7 +20,7 @@ const UserProvider = ({ children }) => {
     };
 
     useEffect(()=>{
-        if(auth!==null){localStorage.setItem('auth', JSON.stringify(auth))}
+        if(auth!=null){localStorage.setItem('auth', JSON.stringify(auth))}
     }, [auth])
     return (
         <UserContext.Provider value={{ auth, login, logout }}>
