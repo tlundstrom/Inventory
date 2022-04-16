@@ -15,8 +15,9 @@ import { UserContext } from '../contexts/UserContext';
 import { useContext } from 'react';
 
 const theme = createTheme();
- 
+
 const Register = (props) =>{
+    const [errors, setErrors] = useState({});
     const navigate =useNavigate();
     const {login} = useContext(UserContext);
     const {toggleForm} = props;
@@ -60,14 +61,16 @@ const Register = (props) =>{
                     })
                     login();
                 } )
-                .catch(err => console.error(err));
+                .catch(err => {
+                    console.error(err);
+                    setErrors(err.response.data.errors);
+                });
                 navigate("/home")
-                console.log(res);
-                console.log("registered");
+
             })
             .catch((err)=> {
                 console.log(err);
-                console.log(err.response.data)
+                setErrors(err.response.data.errors);
             });
     }
 
@@ -87,6 +90,8 @@ const Register = (props) =>{
                     <Typography component="h1" variant="h5">Register</Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField 
+                            error={!!errors.name}
+                            helperText={errors.name?errors.name.message:null}
                             margin="normal"
                             required
                             fullWidth
@@ -99,6 +104,8 @@ const Register = (props) =>{
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <TextField 
+                            error={!!errors.email}
+                            helperText={errors.email?errors.email.message:null}
                             margin="normal"
                             required
                             fullWidth
@@ -110,6 +117,8 @@ const Register = (props) =>{
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <TextField 
+                            error={!!errors.password}
+                            helperText={errors.password?errors.password.message:null}
                             margin="normal"
                             required
                             fullWidth
@@ -121,6 +130,8 @@ const Register = (props) =>{
                             onChange={(e)=>{handleChange(e)}}
                         />
                         <TextField 
+                            error={!!errors.confirm}
+                            helperText={errors.confirm?errors.confirm.message:null}
                             margin="normal"
                             required
                             fullWidth

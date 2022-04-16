@@ -23,6 +23,7 @@ const Login = (props) => {
     const {toggleForm} = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors]= useState({})
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -39,7 +40,10 @@ const Login = (props) => {
                 login();
                 navigate("/home")
             } )
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                setErrors(err.resonse.data.errors);
+            });
 
     }
     return (
@@ -58,6 +62,8 @@ const Login = (props) => {
                     <Typography component="h1" variant="h5">Sign in</Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
+                            error={!!errors.email}
+                            helperText={errors.email?errors.email.message:null}
                             margin="normal"
                             required
                             fullWidth
@@ -70,6 +76,8 @@ const Login = (props) => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField
+                            error={!!errors.password}
+                            helperText={errors.password?errors.password.message:null}
                             margin="normal"
                             required
                             fullWidth

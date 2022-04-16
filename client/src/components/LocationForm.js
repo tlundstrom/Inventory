@@ -30,7 +30,9 @@ const LocationForm = (props)=>{
     return(
 
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <TextField 
+        <TextField
+            error={!!errors.name}
+            helperText={errors.name?errors.name.message:null} 
             size="small"
             margin="normal"
             required
@@ -42,6 +44,8 @@ const LocationForm = (props)=>{
             onChange={(e)=>{handleChange(e)}}
         />
         <TextField 
+            error={!!errors.temp}
+            helperText={errors.temp?errors.temp.message:null}
             size="small"
             select
             margin="normal"
@@ -57,7 +61,9 @@ const LocationForm = (props)=>{
             <MenuItem value={'Refrigerated'}>Refrigerated</MenuItem>
             <MenuItem value={'Frozen'}>Frozen</MenuItem>
         </TextField>
-        <TextField 
+        <TextField
+            error={!!errors.schedule}
+            helperText={errors.schedule?errors.schedule.message:null} 
             size="small"
             select
             margin="normal"

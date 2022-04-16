@@ -23,6 +23,8 @@ const DistributorForm = (props) =>{
     return(
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField 
+                error={!!errors.distName}
+                helperText={errors.distName?errors.distName.message:null}
                 size="small"
                 margin="normal"
                 required
@@ -34,6 +36,8 @@ const DistributorForm = (props) =>{
                 onChange={(e)=>{handleChange(e)}}
             />
             <TextField 
+                error={!!errors.repName}
+                helperText={errors.repName?errors.repName.message:null}
                 size="small"
                 margin="normal"
                 required
@@ -45,6 +49,8 @@ const DistributorForm = (props) =>{
                 onChange={(e)=>{handleChange(e)}}
             />
             <TextField 
+                error={!!errors.repEmail}
+                helperText={errors.repEmail?errors.repEmail.message:null}
                 size="small"
                 margin="normal"
                 required
@@ -56,6 +62,8 @@ const DistributorForm = (props) =>{
                 onChange={(e)=>{handleChange(e)}}
             />
             <TextField 
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber?errors.phoneNumber.message:null}
                 size="small"
                 margin="normal"
                 required

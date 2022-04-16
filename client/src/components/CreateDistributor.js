@@ -30,7 +30,10 @@ const CreateDistributor = (props) =>{
             .then(res =>{
                 console.log(res);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                setErrors(err.resonse.data.errors);
+            });
     }
 
 
