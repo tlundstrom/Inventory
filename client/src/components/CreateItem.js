@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import ItemForm from './ItemForm';
+import { createTheme, ThemeProvider, Container, CssBaseline, Box,} from '@mui/material';
 
-
-
+const theme = createTheme();
 const CreateItem = (props) =>{
     const [errors, setErrors] = useState({});
     const [initialItem, setInitialItem] = useState({
@@ -36,10 +36,22 @@ const CreateItem = (props) =>{
 
 
     return (
-        <>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
             <Typography component="h1" variant="h5">Enter a new Item</Typography>
             <ItemForm errors={errors} initialItem={initialItem} submitProp={createItem} />
-        </>
+            </Box>
+            </Container>
+        </ThemeProvider>
     )
 }
 

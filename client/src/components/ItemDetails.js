@@ -3,6 +3,9 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import ItemForm from './ItemForm';
 import { useParams } from 'react-router-dom';
+import { createTheme, ThemeProvider, Container, CssBaseline, Box,} from '@mui/material';
+
+const theme = createTheme();
 
 const ItemDetails = (props) =>{
     const [initialItem, setInitialItem] = useState({});
@@ -42,14 +45,26 @@ const ItemDetails = (props) =>{
 
 
     return(
-        <>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
             <Typography component="h1" variant="h5">Enter a new Item</Typography>
             {
                 loaded && !errors.message?
                 <ItemForm errors={errors} initialItem={initialItem} submitProp={updateItem} />
                 :<p>{errors.message}</p>
             }
-        </>
+        </Box>
+            </Container>
+        </ThemeProvider>
     )
 }
 

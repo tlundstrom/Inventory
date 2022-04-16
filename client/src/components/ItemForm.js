@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { createTheme, ThemeProvider, Container, CssBaseline, Box, TextField, Button, MenuItem } from "@mui/material";
+import { Box, TextField, Button, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const theme = createTheme();
 
 const ItemForm = (props)=>{
     const navigate = useNavigate();
@@ -46,17 +45,7 @@ const ItemForm = (props)=>{
     }, [])
     return(
         
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline/>
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
+        
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         
                         <TextField 
@@ -164,9 +153,7 @@ const ItemForm = (props)=>{
                             Submit
                         </Button>
                     </Box>
-                </Box>
-            </Container>
-        </ThemeProvider>
+                
     )
 }
 
