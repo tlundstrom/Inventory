@@ -15,7 +15,7 @@ const MobileHeader = (props) =>{
                     noWrap
                     sx={{ flexGrow: 1 }}
                     >
-                    Dashboard
+                    Dry Storage
                 </Typography>
                 <section>
                 </section>

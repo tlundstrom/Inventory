@@ -7,8 +7,8 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import GroupsIcon from '@mui/icons-material/Groups';
+import IcecreamIcon from '@mui/icons-material/Icecream';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -53,9 +53,9 @@ const DashSidebar = (props) =>{
             <List component="nav">
             <ListItemButton onClick={()=>{handleNav('')}}>
                 <ListItemIcon>
-                    <DashboardIcon />
+                    <InventoryIcon />
                 </ListItemIcon>
-                <ListItemText primary="Dashboard" />
+                <ListItemText primary="Inventory" />
             </ListItemButton>
             <ListItemButton onClick={()=>{handleNav('locations')}}>
                 <ListItemIcon>
@@ -65,15 +65,15 @@ const DashSidebar = (props) =>{
             </ListItemButton>
             <ListItemButton onClick={()=>{handleNav('distributors')}}>
                 <ListItemIcon>
-                    <GroupsIcon/>
+                    <LocalShippingIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Distributors" />
             </ListItemButton>
             <ListItemButton onClick={()=>{handleNav('items')}}>
                 <ListItemIcon>
-                    <InventoryIcon/>
+                    <IcecreamIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Inventory" />
+                <ListItemText primary="Items" />
             </ListItemButton>
                 <Divider sx={{ my: 1 }} />
                     {/* <ListItemButton onClick={()=>{handleNav}}>

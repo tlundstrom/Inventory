@@ -1,12 +1,6 @@
-import { Box, Container } from "@mui/material"
-import IconButton from '@mui/material/IconButton';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import GroupsIcon from '@mui/icons-material/Groups';
+
+import IcecreamIcon from '@mui/icons-material/Icecream';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -47,10 +41,10 @@ const MobileFooter = (props) =>{
                     setValue(newValue);
                 }}
                 >
-                <BottomNavigationAction onClick={()=>{handleNav('')}} label="Home" icon={<DashboardIcon />} />
-                <BottomNavigationAction onClick={()=>{handleNav('distributors')}} label="Distributors" icon={<GroupsIcon />} />
+                <BottomNavigationAction onClick={()=>{handleNav('')}} label="Inventory" icon={<InventoryIcon />} />
+                <BottomNavigationAction onClick={()=>{handleNav('distributors')}} label="Distributors" icon={<LocalShippingIcon />} />
                 <BottomNavigationAction onClick={()=>{handleNav('locations')}} label="Locations" icon={<KitchenIcon />} />
-                <BottomNavigationAction onClick={()=>{handleNav('items')}} label="Inventory" icon={<InventoryIcon />} />
+                <BottomNavigationAction onClick={()=>{handleNav('items')}} label="Items" icon={<IcecreamIcon />} />
                 <BottomNavigationAction onClick={handleLogout} label="Logout" icon={<LogoutIcon />} />
             </BottomNavigation>
         </Paper>
