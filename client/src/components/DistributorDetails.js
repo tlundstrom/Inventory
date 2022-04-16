@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Box, Typography, ThemeProvider, Container, CssBaseline, createTheme } from '@mui/material';
+import {Button, Box, Typography, ThemeProvider, Container, CssBaseline, createTheme } from '@mui/material';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import DistributorForm from './DistributorForm';
@@ -48,6 +48,7 @@ const DistributorDetails = (props) =>{
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
+                <Button onClick={() => navigate(-1)}>Back</Button>
                 <Box
                     sx={{
                         marginTop: 4,

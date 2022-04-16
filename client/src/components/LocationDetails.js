@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Box, Typography, ThemeProvider, Container, CssBaseline, createTheme } from '@mui/material';
+import {Button, Box, Typography, ThemeProvider, Container, CssBaseline, createTheme } from '@mui/material';
 import axios from 'axios';
 import LocationForm from './LocationForm';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -49,6 +49,7 @@ const LocationDetails = (props) =>{
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
+                <Button onClick={() => navigate(-1)}>Back</Button>
                 <Box
                     sx={{
                         marginTop: 4,

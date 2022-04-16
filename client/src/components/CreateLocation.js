@@ -1,6 +1,6 @@
 
 import CssBaseline from '@mui/material/CssBaseline';
-
+import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -47,6 +47,7 @@ const CreateLocation = (props) =>{
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
+                <Button onClick={() => navigate(-1)}>Back</Button>
                 <Box
                     sx={{
                         marginTop: 4,

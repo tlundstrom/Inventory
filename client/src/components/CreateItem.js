@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import ItemForm from './ItemForm';
-import { createTheme, ThemeProvider, Container, CssBaseline, Box,} from '@mui/material';
+import { Button, createTheme, ThemeProvider, Container, CssBaseline, Box,} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
@@ -42,6 +42,7 @@ const CreateItem = (props) =>{
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
+                <Button onClick={() => navigate(-1)}>Back</Button>
                 <Box
                     sx={{
                         marginTop: 4,
