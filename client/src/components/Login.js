@@ -17,6 +17,7 @@ import { UserContext } from '../contexts/UserContext';
 const theme = createTheme();
 
 
+
 const Login = (props) => {
     const { login } = useContext(UserContext);
     const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Login = (props) => {
 
     }
     return (
+        
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs" >
                 <CssBaseline/>
@@ -60,10 +62,10 @@ const Login = (props) => {
                         alignItems: 'center',
                     }}
                 >
-                    <Typography component="h1" variant="h5">Sign in</Typography>
+                    <Typography component="h1" variant="h5">Sign in </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
-                        error={!!errors}
+                        error={!!errors.message}
                             margin="normal"
                             required
                             fullWidth
@@ -76,7 +78,7 @@ const Login = (props) => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField
-                        error={!!errors}
+                        error={!!errors.message}
                             margin="normal"
                             required
                             fullWidth
