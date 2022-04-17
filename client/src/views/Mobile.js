@@ -3,21 +3,16 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import { Toolbar } from "@mui/material";
-import CreateDistributor from "../components/CreateDistributor";
-import CreateItem from "../components/CreateItem";
-import CreateLocation from "../components/CreateLocation";
-import DistributorDetails from "../components/DistributorDetails";
 import Distributors from "../components/Distributors";
-import ItemDetails from "../components/ItemDetails";
 import Items from "../components/Items";
-import LocationDetails from "../components/LocationDetails";
 import Locations from "../components/Locations";
 import { Route, Routes } from "react-router-dom";
 import MobileHeader from "../components/MobileHeader";
 import MobileFooter from "../components/MobileFooter";
 import Inventory from "../components/Inventory";
+import CreateAll from "./Create";
+import Update from "./Update";
 
 const theme = createTheme();
 
@@ -42,16 +37,22 @@ const Mobile = (props) => {
 					<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
 						<Grid container spacing={3}>
 							<Routes>
-								<Route element={<CreateDistributor />} path="/distributors/new" />
-								<Route element={<Distributors />} path="/distributors" />
-								<Route element={<DistributorDetails />} path="/distributors/edit/:id" />
-								<Route element={<Items />} path="/items" />
-								<Route element={<Inventory />} path="/" />
-								<Route element={<ItemDetails />} path="/items/edit/:id" />
-								<Route element={<CreateItem />} path="/items/new" />
-								<Route element={<CreateLocation />} path="locations/new" />
-								<Route element={<LocationDetails />} path="/locations/edit/:id" />
-								<Route element={<Locations />} path="/locations" />
+								<Route path="items">
+									<Route element={<CreateAll />} path="create" />
+									<Route element={<Items />} path="" />
+									<Route element={<Update />} path="update/:id/*" />
+								</Route>
+								<Route path="distributors">
+									<Route element={<CreateAll />} path="create" />
+									<Route element={<Distributors />} path="" />
+									<Route element={<Update />} path="update/:id" />
+								</Route>
+								<Route path="locations">
+									<Route element={<CreateAll />} path="create" />
+									<Route element={<Locations />} path="" />
+									<Route element={<Update />} path="update/:id" />
+								</Route>
+								<Route element={<Inventory />} path="/*" />
 							</Routes>
 						</Grid>
 					</Container>

@@ -69,21 +69,21 @@ const Dashboard = (props) => {
 						<Grid container spacing={3}>
 							<Routes>
 								<Route path="items">
-									<Route element={<CreateAll />} path="create/*" />
+									<Route element={<CreateAll />} path="create" />
 									<Route element={<Items />} path="" />
 									<Route element={<Update />} path="update/:id/*" />
 								</Route>
 								<Route path="distributors">
-									<Route element={<CreateAll />} path="create/*" />
+									<Route element={<CreateAll />} path="create" />
 									<Route element={<Distributors />} path="" />
-									<Route element={<Update />} path="update/:id/*" />
+									<Route element={<Update />} path="update/:id" />
 								</Route>
 								<Route path="locations">
-									<Route element={<CreateAll />} path="create/*" />
+									<Route element={<CreateAll />} path="create" />
 									<Route element={<Locations />} path="" />
-									<Route element={<Update />} path="update/:id/*" />
+									<Route element={<Update />} path="update/:id" />
 								</Route>
-								<Route element={<Inventory />} path="/" />
+								<Route element={<Inventory />} path="/*" />
 							</Routes>
 						</Grid>
 					</Container>

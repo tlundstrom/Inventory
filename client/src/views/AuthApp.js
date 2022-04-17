@@ -19,8 +19,8 @@ const AuthApp = (props) => {
 		<BrowserRouter>
 			<section className="App">
 				<Routes>
-					{isMobile() ? <Route element={<Mobile />} path="/home/*" /> : <Route element={<Dashboard />} path="/home/*" />}
-					{isMobile() ? <Route element={<Mobile />} path="/home/*" /> : <Route element={<Dashboard />} path="*" />}
+					{isMobile() ? <Route element={<Mobile />} path="/*" /> : <Route element={<Dashboard />} path="/*" />}
+					{isMobile() ? <Route element={<Mobile />} path="*" /> : <Route element={<Dashboard />} path="*" />}
 				</Routes>
 			</section>
 		</BrowserRouter>
