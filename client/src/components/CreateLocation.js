@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Grid, Paper } from "@mui/material";
+import { Box, Button, Grid, Paper } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import axios from "axios";
@@ -36,15 +36,22 @@ const CreateLocation = (props) => {
 				<Paper
 					sx={{
 						p: 2,
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
 					}}
 				>
-					<Typography component="h1" variant="h5">
-						Enter a new Location
-					</Typography>
-					<LocationForm errors={errors} initialLocation={initialLocation} submitProp={createLocation} />
+					<Button onClick={() => navigate(-1)}>Back</Button>
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							justifyContent: "space-around",
+						}}
+					>
+						<Typography component="h1" variant="h5">
+							Enter a new Location
+						</Typography>
+						<LocationForm errors={errors} initialLocation={initialLocation} submitProp={createLocation} />
+					</Box>
 				</Paper>
 			</Grid>
 		</ThemeProvider>

@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import ItemForm from "./ItemForm";
 import { useParams, useNavigate } from "react-router-dom";
-import { Grid, Paper, createTheme, ThemeProvider } from "@mui/material";
+import { Box, Button, createTheme, ThemeProvider, Grid, Paper } from "@mui/material";
 
 const theme = createTheme();
 
@@ -50,19 +50,25 @@ const ItemDetails = (props) => {
 				<Paper
 					sx={{
 						p: 2,
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
 					}}
 				>
-					<Typography component="h1" variant="h5">
-						Edit {initialItem.name}
-					</Typography>
-					{loaded && !errors.message ? (
-						<ItemForm errors={errors} initialItem={initialItem} submitProp={updateItem} />
-					) : (
-						<p>{errors.message}</p>
-					)}
+					<Button onClick={() => navigate(-1)}>Back</Button>
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+						}}
+					>
+						<Typography component="h1" variant="h5">
+							Edit {initialItem.name}
+						</Typography>
+						{loaded && !errors.message ? (
+							<ItemForm errors={errors} initialItem={initialItem} submitProp={updateItem} />
+						) : (
+							<p>{errors.message}</p>
+						)}
+					</Box>
 				</Paper>
 			</Grid>
 		</ThemeProvider>

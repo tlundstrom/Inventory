@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Grid, Paper, Typography, ThemeProvider, createTheme } from "@mui/material";
+import { Button, Box, Grid, Paper, Typography, ThemeProvider, createTheme } from "@mui/material";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import DistributorForm from "./DistributorForm";
@@ -50,19 +50,25 @@ const DistributorDetails = (props) => {
 				<Paper
 					sx={{
 						p: 2,
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
 					}}
 				>
-					<Typography component="h1" variant="h5">
-						Edit {initialDistributor.distName}
-					</Typography>
-					{loaded && !errors.message ? (
-						<DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={updateDistributor} />
-					) : (
-						<p>{errors.message}</p>
-					)}
+					<Button onClick={() => navigate(-1)}>Back</Button>
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+						}}
+					>
+						<Typography component="h1" variant="h5">
+							Edit {initialDistributor.distName}
+						</Typography>
+						{loaded && !errors.message ? (
+							<DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={updateDistributor} />
+						) : (
+							<p>{errors.message}</p>
+						)}
+					</Box>
 				</Paper>
 			</Grid>
 		</ThemeProvider>

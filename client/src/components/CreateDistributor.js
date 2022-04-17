@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@mui/material";
+import { Box, Button, Grid, Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
@@ -37,15 +37,21 @@ const CreateDistributor = (props) => {
 				<Paper
 					sx={{
 						p: 2,
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
 					}}
 				>
-					<Typography component="h1" variant="h5">
-						Enter a new Distributor
-					</Typography>
-					<DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={createDistributor} />
+					<Button onClick={() => navigate(-1)}>Back</Button>
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+						}}
+					>
+						<Typography component="h1" variant="h5">
+							Enter a new Distributor
+						</Typography>
+						<DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={createDistributor} />
+					</Box>
 				</Paper>
 			</Grid>
 		</ThemeProvider>

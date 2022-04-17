@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Grid, Paper, Typography, ThemeProvider, createTheme } from "@mui/material";
+import { Button, Box, Grid, Paper, Typography, ThemeProvider, createTheme } from "@mui/material";
 import axios from "axios";
 import LocationForm from "./LocationForm";
 import { useNavigate, useParams } from "react-router-dom";
@@ -49,19 +49,26 @@ const LocationDetails = (props) => {
 				<Paper
 					sx={{
 						p: 2,
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
 					}}
 				>
-					<Typography component="h1" variant="h5">
-						Edit {initialLocation.name}
-					</Typography>
-					{loaded && !errors.message ? (
-						<LocationForm errors={errors} initialLocation={initialLocation} submitProp={updateLocation} />
-					) : (
-						<p>{errors.message}</p>
-					)}
+					<Button onClick={() => navigate(-1)}>Back</Button>
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							justifyContent: "space-around",
+						}}
+					>
+						<Typography component="h1" variant="h5">
+							Edit {initialLocation.name}
+						</Typography>
+						{loaded && !errors.message ? (
+							<LocationForm errors={errors} initialLocation={initialLocation} submitProp={updateLocation} />
+						) : (
+							<p>{errors.message}</p>
+						)}
+					</Box>
 				</Paper>
 			</Grid>
 		</ThemeProvider>
