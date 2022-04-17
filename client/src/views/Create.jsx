@@ -11,12 +11,14 @@ const CreateAll = (props) => {
 	const path = window.location.pathname;
 
 	const ForwardUrl = () => {
-		if (path == "/items/create") {
+		if (path === "/items/create") {
 			return <Route element={<CreateItem />} path="" />;
 		} else if (path === "/distributors/create") {
 			return <Route element={<CreateDistributor />} path="" />;
 		} else if (path === "/locations/create") {
 			return <Route element={<CreateLocation />} path="" />;
+		} else {
+			navigate("/items");
 		}
 	};
 
