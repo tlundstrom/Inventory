@@ -46,7 +46,7 @@ const Locations = (props) => {
 	};
 
 	const handleEdit = (id) => {
-		navigate(`edit/${id}`);
+		navigate(`update /${id}`);
 	};
 
 	return (
@@ -88,7 +88,7 @@ const Locations = (props) => {
 					<Button
 						sx={{ width: 0.5 }}
 						onClick={() => {
-							navigate("new");
+							navigate("create");
 						}}
 						variant="contained"
 					>

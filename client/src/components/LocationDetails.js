@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button, Box, Grid, Paper, Typography, ThemeProvider, createTheme } from "@mui/material";
+import { Typography } from "@mui/material";
 import axios from "axios";
 import LocationForm from "./LocationForm";
 import { useNavigate, useParams } from "react-router-dom";
-
-const theme = createTheme();
 
 const LocationDetails = (props) => {
 	const navigate = useNavigate();
@@ -44,34 +42,16 @@ const LocationDetails = (props) => {
 	};
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Grid item xs={12}>
-				<Paper
-					sx={{
-						p: 2,
-					}}
-				>
-					<Button onClick={() => navigate(-1)}>Back</Button>
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							alignItems: "center",
-							justifyContent: "space-around",
-						}}
-					>
-						<Typography component="h1" variant="h5">
-							Edit {initialLocation.name}
-						</Typography>
-						{loaded && !errors.message ? (
-							<LocationForm errors={errors} initialLocation={initialLocation} submitProp={updateLocation} />
-						) : (
-							<p>{errors.message}</p>
-						)}
-					</Box>
-				</Paper>
-			</Grid>
-		</ThemeProvider>
+		<>
+			<Typography component="h1" variant="h5">
+				Edit {initialLocation.name}
+			</Typography>
+			{loaded && !errors.message ? (
+				<LocationForm errors={errors} initialLocation={initialLocation} submitProp={updateLocation} />
+			) : (
+				<p>{errors.message}</p>
+			)}
+		</>
 	);
 };
 

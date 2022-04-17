@@ -1,11 +1,8 @@
-import { Box, Button, Grid, Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DistributorForm from "./DistributorForm";
-const theme = createTheme();
 
 const CreateDistributor = (props) => {
 	const navigate = useNavigate();
@@ -32,29 +29,12 @@ const CreateDistributor = (props) => {
 	};
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Grid item xs={12}>
-				<Paper
-					sx={{
-						p: 2,
-					}}
-				>
-					<Button onClick={() => navigate(-1)}>Back</Button>
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							alignItems: "center",
-						}}
-					>
-						<Typography component="h1" variant="h5">
-							Enter a new Distributor
-						</Typography>
-						<DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={createDistributor} />
-					</Box>
-				</Paper>
-			</Grid>
-		</ThemeProvider>
+		<>
+			<Typography component="h1" variant="h5">
+				Enter a new Distributor
+			</Typography>
+			<DistributorForm errors={errors} initialDistributor={initialDistributor} submitProp={createDistributor} />
+		</>
 	);
 };
 

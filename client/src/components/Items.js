@@ -41,7 +41,7 @@ const Items = (props) => {
 		setOpen(true);
 	};
 	const handleEdit = (id) => {
-		navigate(`edit/${id}`);
+		navigate(`update/${id}`);
 	};
 
 	const handleClose = () => {
@@ -97,7 +97,7 @@ const Items = (props) => {
 					<Button
 						sx={{ width: 0.5 }}
 						onClick={() => {
-							navigate("new");
+							navigate("create");
 						}}
 						variant="contained"
 					>

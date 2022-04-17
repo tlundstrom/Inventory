@@ -3,9 +3,6 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import ItemForm from "./ItemForm";
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Button, createTheme, ThemeProvider, Grid, Paper } from "@mui/material";
-
-const theme = createTheme();
 
 const ItemDetails = (props) => {
 	const navigate = useNavigate();
@@ -22,15 +19,15 @@ const ItemDetails = (props) => {
 				if (isMounted) {
 					setInitialItem(res.data);
 					setLoaded(true);
+					console.log(initialItem);
 				}
 			})
 			.catch((err) => {
-				console.log(err);
-				setErrors(err.response.data);
+				navigate("/items");
 				setLoaded(false);
 			});
 		return () => (isMounted = false);
-	});
+	}, []);
 
 	const updateItem = (initialItem) => {
 		axios
@@ -40,38 +37,17 @@ const ItemDetails = (props) => {
 			})
 			.catch((err) => {
 				console.log(err);
-				setErrors(err.response.data.errors);
+				//setErrors(err.response.data.errors);
 			});
 	};
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Grid item xs={12}>
-				<Paper
-					sx={{
-						p: 2,
-					}}
-				>
-					<Button onClick={() => navigate(-1)}>Back</Button>
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							alignItems: "center",
-						}}
-					>
-						<Typography component="h1" variant="h5">
-							Edit {initialItem.name}
-						</Typography>
-						{loaded && !errors.message ? (
-							<ItemForm errors={errors} initialItem={initialItem} submitProp={updateItem} />
-						) : (
-							<p>{errors.message}</p>
-						)}
-					</Box>
-				</Paper>
-			</Grid>
-		</ThemeProvider>
+		<>
+			<Typography component="h1" variant="h5">
+				Edit {initialItem.name}
+			</Typography>
+			{loaded && !errors.message ? <ItemForm errors={errors} initialItem={initialItem} submitProp={updateItem} /> : <p>{errors.message}</p>}
+		</>
 	);
 };
 

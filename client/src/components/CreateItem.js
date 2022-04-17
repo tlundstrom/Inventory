@@ -2,10 +2,8 @@ import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import ItemForm from "./ItemForm";
-import { Box, Button, Grid, createTheme, ThemeProvider, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const theme = createTheme();
 const CreateItem = (props) => {
 	const navigate = useNavigate();
 	const [errors, setErrors] = useState({});
@@ -35,29 +33,12 @@ const CreateItem = (props) => {
 	};
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Grid item xs={12}>
-				<Paper
-					sx={{
-						p: 2,
-					}}
-				>
-					<Button onClick={() => navigate(-1)}>Back</Button>
-					<Box
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							alignItems: "center",
-						}}
-					>
-						<Typography component="h1" variant="h5">
-							Enter a new Item
-						</Typography>
-						<ItemForm errors={errors} initialItem={initialItem} submitProp={createItem} />
-					</Box>
-				</Paper>
-			</Grid>
-		</ThemeProvider>
+		<>
+			<Typography component="h1" variant="h5">
+				Enter a new Item
+			</Typography>
+			<ItemForm errors={errors} initialItem={initialItem} submitProp={createItem} />
+		</>
 	);
 };
 export default CreateItem;
