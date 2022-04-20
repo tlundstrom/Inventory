@@ -10,7 +10,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { Grid } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid } from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
@@ -20,9 +20,14 @@ const Login = (props) => {
 	const { login } = useContext(UserContext);
 	const navigate = useNavigate();
 	const { toggleForm } = props;
+	const [checked, setChecked] = useState(false);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState({});
+
+	const handleCheck = () => {
+		setChecked(!checked);
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -39,7 +44,7 @@ const Login = (props) => {
 				}
 			)
 			.then((res) => {
-				login();
+				login(checked);
 				navigate("/");
 			})
 			.catch((err) => {
@@ -92,6 +97,7 @@ const Login = (props) => {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 						{errors ? <Typography sx={{ color: theme.palette.error.main, textAlign: "center" }}>{errors.message}</Typography> : null}
+						<FormControlLabel control={<Checkbox checked={checked} onChange={handleCheck} />} label="Stay logged in for 7 days." />
 						<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 							Sign In
 						</Button>
