@@ -1,3 +1,5 @@
+//Refactor later to simplify imports from MUI into single lines.
+
 import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,6 +18,7 @@ import Inventory from "../components/Inventory";
 import CreateAll from "./Create";
 import Update from "./Update";
 
+//Definition for slide out menu
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(({ theme, open }) => ({
 	"& .MuiDrawer-paper": {
